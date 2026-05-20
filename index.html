@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Harsh Kaklotar — LinkedIn Personal Branding for US CPA Professionals. Done-for-you LinkedIn management that builds authority and attracts premium clients.">
+<title>Harsh Kaklotar — LinkedIn Branding for US CPAs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="data.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white:   #ffffff;
+  --off:     #f7f7f5;
+  --ink:     #0f0f0f;
+  --ink2:    #3a3a3a;
+  --ink3:    #767676;
+  --line:    #e8e8e4;
+  --accent:  #1a56db;
+  --accent2: #0e3fa8;
+  --tag-bg:  #eef3ff;
+  --tag-txt: #1a56db;
+  --r:       6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Sora', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 68px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-color: var(--line); }
+
+.nav-logo {
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 13px; font-weight: 400; color: var(--ink2);
+  text-decoration: none; letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.nav-btn {
+  font-size: 13px; font-weight: 500;
+  background: var(--ink); color: var(--white);
+  padding: 10px 22px; border-radius: 100px;
+  text-decoration: none; letter-spacing: -0.01em;
+  transition: background 0.2s, transform 0.15s;
+}
+.nav-btn:hover { background: var(--accent); transform: translateY(-1px); }
+
+.nav-mobile-btn { display: none; }
+
+/* ── HERO ── */
+.hero {
+  padding: 160px 60px 100px;
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--tag-bg); color: var(--tag-txt);
+  font-size: 12px; font-weight: 500;
+  padding: 6px 14px; border-radius: 100px;
+  letter-spacing: 0.02em; margin-bottom: 28px;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--accent); border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+
+.hero-h1 {
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.03em; color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero-h1 em {
+  font-style: normal; color: var(--accent);
+}
+
+.hero-p {
+  font-size: 17px; color: var(--ink2);
+  line-height: 1.7; margin-bottom: 36px;
+  font-weight: 300; max-width: 480px;
+}
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-fill {
+  font-size: 14px; font-weight: 500;
+  background: var(--ink); color: var(--white);
+  padding: 14px 28px; border-radius: 100px;
+  text-decoration: none; letter-spacing: -0.01em;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-fill:hover { background: var(--accent); transform: translateY(-1px); }
+
+.btn-ghost {
+  font-size: 14px; font-weight: 400;
+  color: var(--ink2); padding: 14px 28px;
+  border-radius: 100px; text-decoration: none;
+  border: 1px solid var(--line); letter-spacing: -0.01em;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.btn-ghost:hover { border-color: var(--ink2); color: var(--ink); }
+
+/* Hero right — proof card */
+.hero-card {
+  background: var(--off); border-radius: 20px;
+  padding: 36px; border: 1px solid var(--line);
+}
+
+.hero-card-label {
+  font-size: 11px; font-weight: 500; color: var(--ink3);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  border: 1px solid var(--line); border-radius: var(--r);
+  overflow: hidden; margin-bottom: 20px;
+}
+.hero-stat {
+  background: var(--white); padding: 20px 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.hero-stat:nth-child(2) { border-right: none; }
+.hero-stat:nth-child(3) { border-bottom: none; }
+.hero-stat:nth-child(4) { border-right: none; border-bottom: none; }
+
+.hero-stat-num {
+  font-size: 26px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.03em;
+  display: block; line-height: 1;
+}
+.hero-stat-lbl {
+  font-size: 11px; color: var(--ink3);
+  margin-top: 4px; display: block;
+}
+
+.hero-firms {
+  font-size: 12px; color: var(--ink3); line-height: 1.6;
+}
+.hero-firms strong { color: var(--ink2); font-weight: 500; }
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 100px 60px; max-width: 1160px; margin: 0 auto; }
+.section-full { padding: 100px 0; }
+.section-full .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 60px; }
+
+hr.divider { border: none; border-top: 1px solid var(--line); max-width: 1160px; margin: 0 auto; }
+
+/* Section header */
+.sh { margin-bottom: 56px; }
+.sh-tag {
+  font-size: 12px; font-weight: 500; color: var(--accent);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin-bottom: 12px; display: block;
+}
+.sh-h2 {
+  font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.15; color: var(--ink);
+}
+.sh-h2 em { font-style: normal; color: var(--ink3); }
+.sh-p {
+  font-size: 16px; color: var(--ink3); max-width: 500px;
+  line-height: 1.7; margin-top: 14px; font-weight: 300;
+}
+
+/* ── LOGOS (Big 4 trust bar) ── */
+.trust-bar {
+  background: var(--off);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 60px;
+}
+.trust-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+}
+.trust-label {
+  font-size: 11px; font-weight: 500; color: var(--ink3);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0;
+}
+.trust-firms {
+  display: flex; gap: 40px; flex-wrap: wrap; align-items: center;
+}
+.trust-firm {
+  font-size: 14px; font-weight: 600; color: var(--ink3);
+  letter-spacing: -0.01em;
+}
+
+/* ── PROBLEM ── */
+.problem-list {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px; border: 1px solid var(--line); border-radius: var(--r);
+  overflow: hidden;
+}
+.prob {
+  padding: 36px 28px; background: var(--white);
+  border-right: 1px solid var(--line);
+  transition: background 0.2s;
+}
+.prob:last-child { border-right: none; }
+.prob:hover { background: var(--off); }
+.prob-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--tag-bg); display: flex; align-items: center;
+  justify-content: center; margin-bottom: 20px; font-size: 18px;
+}
+.prob-title {
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.prob-body { font-size: 13px; color: var(--ink3); line-height: 1.7; }
+
+/* ── PROCESS ── */
+.process-list { display: flex; flex-direction: column; gap: 1px; }
+.step-row {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 28px; padding: 32px 0; align-items: start;
+  border-bottom: 1px solid var(--line);
+}
+.step-row:last-child { border-bottom: none; }
+.step-n {
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  padding-top: 3px; font-variant-numeric: tabular-nums;
+}
+.step-content {}
+.step-title {
+  font-size: 16px; font-weight: 600; color: var(--ink);
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.step-body { font-size: 14px; color: var(--ink3); line-height: 1.7; }
+
+/* ── PACKAGES ── */
+.pkg-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 16px; margin-top: 56px;
+}
+.pkg-card {
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: 32px 28px; background: var(--white);
+  display: flex; flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+}
+.pkg-card:hover {
+  border-color: #c0c8e8;
+  box-shadow: 0 8px 32px rgba(26,86,219,0.07);
+  transform: translateY(-3px);
+}
+.pkg-card.pop {
+  border-color: var(--accent);
+  background: #fafbff;
+}
+.pop-badge {
+  position: absolute; top: -12px; left: 28px;
+  background: var(--accent); color: var(--white);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+.pkg-tier {
+  font-size: 11px; font-weight: 500; color: var(--ink3);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;
+}
+.pkg-name {
+  font-size: 22px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.02em; margin-bottom: 4px;
+}
+.pkg-tagline {
+  font-size: 13px; color: var(--ink3);
+  margin-bottom: 24px; font-family: 'Lora', serif;
+  font-style: italic;
+}
+.pkg-sep { border: none; border-top: 1px solid var(--line); margin-bottom: 20px; }
+.pkg-feats { list-style: none; flex: 1; margin-bottom: 24px; }
+.pkg-feats li {
+  font-size: 13px; color: var(--ink2); padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
+}
+.pkg-feats li:last-child { border-bottom: none; }
+.pkg-feats li::before {
+  content: '✓'; color: var(--accent); font-weight: 600;
+  font-size: 12px; flex-shrink: 0; margin-top: 1px;
+}
+.pkg-cta-btn {
+  display: block; text-align: center;
+  font-size: 13px; font-weight: 500;
+  padding: 13px; border-radius: 100px;
+  text-decoration: none; letter-spacing: -0.01em;
+  transition: all 0.2s;
+  border: 1px solid var(--ink);
+  color: var(--ink); background: var(--white);
+}
+.pkg-cta-btn:hover { background: var(--ink); color: var(--white); }
+.pkg-card.pop .pkg-cta-btn {
+  background: var(--accent); color: var(--white); border-color: var(--accent);
+}
+.pkg-card.pop .pkg-cta-btn:hover { background: var(--accent2); border-color: var(--accent2); }
+.pkg-terms {
+  font-size: 11px; color: var(--ink3); text-align: center;
+  margin-top: 10px; letter-spacing: 0.02em;
+}
+
+/* ── ABOUT ── */
+.about-wrap {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 80px; align-items: start;
+}
+.about-left {}
+.about-avatar {
+  width: 100%; aspect-ratio: 3/4; border-radius: 16px;
+  background: var(--off); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px; font-weight: 700; color: var(--ink3);
+  letter-spacing: -0.04em;
+}
+.about-right {}
+.about-name {
+  font-size: clamp(28px, 3vw, 40px); font-weight: 700;
+  letter-spacing: -0.03em; margin-bottom: 4px;
+}
+.about-role {
+  font-size: 16px; color: var(--ink3); margin-bottom: 28px;
+  font-family: 'Lora', serif; font-style: italic;
+}
+.about-body {
+  font-size: 15px; color: var(--ink2); line-height: 1.8;
+  margin-bottom: 32px; font-weight: 300;
+}
+.about-body strong { color: var(--ink); font-weight: 600; }
+
+.creds { display: flex; flex-direction: column; gap: 10px; }
+.cred {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: var(--ink2);
+}
+.cred-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+
+/* ── PROOF QUOTE ── */
+.proof-wrap {
+  background: var(--ink); border-radius: 20px;
+  padding: 64px; text-align: center;
+}
+.proof-quote {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-style: italic; color: var(--white);
+  line-height: 1.5; margin-bottom: 20px; font-weight: 400;
+}
+.proof-quote em { font-style: normal; color: #93aff5; }
+.proof-attr {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.proof-nums {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r); overflow: hidden;
+}
+.proof-num-cell {
+  padding: 24px; background: rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.proof-num-cell:last-child { border-right: none; }
+.proof-big {
+  font-size: 28px; font-weight: 700;
+  color: var(--white); letter-spacing: -0.03em;
+  display: block; line-height: 1;
+}
+.proof-lbl {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  display: block; margin-top: 4px;
+}
+
+/* ── RESULTS TIMELINE ── */
+.timeline {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden; margin-top: 52px;
+}
+.tl-cell {
+  padding: 36px 28px; background: var(--white);
+  border-right: 1px solid var(--line);
+  position: relative; transition: background 0.2s;
+}
+.tl-cell:last-child { border-right: none; }
+.tl-cell:hover { background: var(--off); }
+.tl-month {
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 12px; display: block;
+}
+.tl-title {
+  font-size: 16px; font-weight: 700; color: var(--ink);
+  letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2;
+}
+.tl-items { list-style: none; }
+.tl-items li {
+  font-size: 13px; color: var(--ink3);
+  padding: 6px 0; border-bottom: 1px solid var(--line);
+  display: flex; gap: 8px; line-height: 1.5;
+}
+.tl-items li:last-child { border-bottom: none; }
+.tl-items li::before {
+  content: '→'; color: var(--accent);
+  font-size: 11px; flex-shrink: 0; margin-top: 2px;
+}
+.tl-num {
+  position: absolute; top: 28px; right: 28px;
+  font-size: 48px; font-weight: 700; color: var(--line);
+  letter-spacing: -0.04em; line-height: 1; user-select: none;
+}
+
+/* ── TESTIMONIALS ── */
+.testi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-top: 52px;
+}
+.testi-card {
+  background: var(--off); border: 1px solid var(--line);
+  border-radius: 14px; padding: 28px;
+  display: flex; flex-direction: column; gap: 20px;
+  transition: box-shadow 0.2s;
+}
+.testi-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.05); }
+.testi-stars { color: #f59e0b; font-size: 13px; letter-spacing: 2px; }
+.testi-quote {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 14px; color: var(--ink2); line-height: 1.75; flex: 1;
+}
+.testi-person { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--tag-bg); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: var(--accent);
+  flex-shrink: 0;
+}
+.testi-name {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  display: block; letter-spacing: -0.01em;
+}
+.testi-title { font-size: 11px; color: var(--ink3); display: block; margin-top: 1px; }
+.testi-placeholder {
+  border: 2px dashed var(--line); border-radius: 14px;
+  padding: 32px; display: flex; align-items: center;
+  justify-content: center; text-align: center;
+  flex-direction: column; gap: 8px;
+}
+.testi-placeholder-icon { font-size: 24px; }
+.testi-placeholder-text {
+  font-size: 13px; color: var(--ink3); line-height: 1.6;
+  font-style: italic;
+}
+
+/* ── FAQ ── */
+.faq-list { margin-top: 52px; max-width: 720px; }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq-q {
+  width: 100%; background: none; border: none;
+  padding: 22px 0; cursor: pointer;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 16px; text-align: left;
+}
+.faq-q-text {
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  letter-spacing: -0.01em; line-height: 1.4;
+}
+.faq-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--off); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--ink3); flex-shrink: 0;
+  transition: all 0.25s; font-weight: 300;
+}
+.faq-item.open .faq-icon {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--white); transform: rotate(45deg);
+}
+.faq-a {
+  font-size: 14px; color: var(--ink3); line-height: 1.75;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0;
+}
+.faq-item.open .faq-a {
+  max-height: 300px; padding-bottom: 22px;
+}
+.faq-a strong { color: var(--ink2); font-weight: 600; }
+
+/* ── FINAL CTA ── */
+.fcta-wrap {
+  background: var(--off); border-radius: 20px;
+  padding: 80px 60px; text-align: center;
+  border: 1px solid var(--line);
+}
+.fcta-wrap h2 {
+  font-size: clamp(28px, 4vw, 52px); font-weight: 700;
+  letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1;
+}
+.fcta-wrap p {
+  font-size: 16px; color: var(--ink2); max-width: 460px;
+  margin: 0 auto 36px; line-height: 1.7; font-weight: 300;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 60px;
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+  max-width: 1280px; margin: 0 auto;
+}
+.footer-logo { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.footer-logo span { color: var(--accent); }
+.footer-links { display: flex; gap: 28px; }
+.footer-links a {
+  font-size: 13px; color: var(--ink3); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--ink); }
+.footer-copy { font-size: 12px; color: var(--ink3); }
+
+/* ── SCROLL REVEAL ── */
+.r { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.r.on { opacity: 1; transform: none; }
+.r.d1 { transition-delay: 0.08s; }
+.r.d2 { transition-delay: 0.16s; }
+.r.d3 { transition-delay: 0.24s; }
+.r.d4 { transition-delay: 0.32s; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+
+  /* Nav */
+  nav { padding: 0 20px; height: 60px; }
+  .nav-links { display: none; }
+  .nav-btn { display: none; }
+  .nav-mobile-btn {
+    display: block;
+    font-size: 13px; font-weight: 500;
+    background: var(--ink); color: var(--white);
+    padding: 9px 18px; border-radius: 100px;
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+
+  /* Hero */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 90px 20px 52px;
+    gap: 36px;
+  }
+  .hero-h1 { font-size: 36px; }
+  .hero-p { font-size: 15px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn-fill, .btn-ghost { text-align: center; width: 100%; }
+  .hero-card { padding: 24px 20px; }
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stat { padding: 16px 14px; }
+  .hero-stat-num { font-size: 20px; }
+
+  /* Trust bar */
+  .trust-bar { padding: 20px; }
+  .trust-inner { flex-direction: column; gap: 12px; }
+  .trust-firms { gap: 20px; }
+  .trust-firm { font-size: 13px; }
+
+  /* Sections */
+  .section { padding: 52px 20px; }
+  .section-full .section-inner { padding: 0 20px; }
+
+  /* Problem */
+  .problem-list { grid-template-columns: 1fr; border-radius: var(--r); }
+  .prob { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 20px; }
+  .prob:last-child { border-bottom: none; }
+
+  /* How it works — fix the two-column grid */
+  #how > div { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .sh { margin-bottom: 0; }
+  .step-row { padding: 24px 0; grid-template-columns: 40px 1fr; gap: 16px; }
+  .step-n { font-size: 12px; padding-top: 2px; }
+  .step-title { font-size: 15px; }
+  .step-body { font-size: 13px; }
+
+  /* Packages */
+  .pkg-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
+  .pkg-card { padding: 28px 20px; }
+  .pop-badge { left: 20px; }
+
+  /* About */
+  .about-wrap { grid-template-columns: 1fr; gap: 28px; }
+  .about-avatar { aspect-ratio: 16/9; font-size: 40px; border-radius: 12px; }
+  .about-name { font-size: 28px; }
+  .about-body { font-size: 14px; }
+
+  /* Proof */
+  .proof-wrap { padding: 36px 20px; border-radius: 14px; }
+  .proof-quote { font-size: 18px; }
+  .proof-nums { grid-template-columns: 1fr; }
+  .proof-num-cell {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 20px;
+  }
+  .proof-num-cell:last-child { border-bottom: none; }
+  .proof-big { font-size: 24px; }
+
+  /* CTA */
+  .fcta-wrap { padding: 44px 20px; border-radius: 14px; }
+  .fcta-wrap h2 { font-size: 28px; }
+  .fcta-wrap p { font-size: 14px; }
+  .btn-fill { padding: 14px 24px; font-size: 14px; }
+
+  /* Footer */
+  footer {
+    padding: 24px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-links { justify-content: center; flex-wrap: wrap; gap: 20px; }
+
+  /* Section headings */
+  .sh-h2 { font-size: 28px; }
+  .sh-p { font-size: 14px; }
+
+  /* FAQ two-col layout */
+  #faq > div { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .faq-list { margin-top: 0; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Timeline */
+  .timeline { grid-template-columns: 1fr; border-radius: var(--r); }
+  .tl-cell { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 20px; }
+  .tl-cell:last-child { border-bottom: none; }
+  .tl-num { font-size: 36px; top: 20px; right: 20px; }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .hero-stat-grid { grid-template-columns: 1fr; }
+  .hero-stat:nth-child(2) { border-right: 1px solid var(--line); }
+  .hero-stat { border-right: none !important; }
+  .hero-h1 { font-size: 30px; }
+  .trust-firms { gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Harsh<span>Kaklotar</span></a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#packages">Services</a>
+    <a href="#about">About</a>
+  </div>
+  <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="nav-btn" target="_blank">Book a Call</a>
+  <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="nav-mobile-btn" target="_blank">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag r">LinkedIn Branding · US CPA Professionals</div>
+    <h1 class="hero-h1 r d1">
+      Your next client<br>is already on<br><em>LinkedIn.</em>
+    </h1>
+    <p class="hero-p r d2">
+      I help US CPA professionals build a LinkedIn presence that attracts premium clients — fully managed, done for you, without writing a single word.
+    </p>
+    <div class="hero-actions r d3">
+      <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="btn-fill" target="_blank">Book a Free Strategy Call</a>
+      <a href="#packages" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right r d2">
+    <div class="hero-card">
+      <div class="hero-card-label">My own LinkedIn · Verified results</div>
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-key="impressions">—</span>
+          <span class="hero-stat-lbl">Total impressions</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-key="reached">—</span>
+          <span class="hero-stat-lbl">Professionals reached</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-key="followers">—</span>
+          <span class="hero-stat-lbl">Followers gained</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-key="topPost">—</span>
+          <span class="hero-stat-lbl">Best post impressions</span>
+        </div>
+      </div>
+      <p class="hero-firms">
+        <strong>Big 4 firms already in my audience</strong> — KPMG, Deloitte, and EY professionals are watching. Achieved in under 30 days of posting.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span class="trust-label">Audience includes professionals from</span>
+    <div class="trust-firms">
+      <span class="trust-firm">KPMG</span>
+      <span class="trust-firm">Deloitte</span>
+      <span class="trust-firm">EY</span>
+      <span class="trust-firm">PwC</span>
+      <span class="trust-firm">Genpact</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROBLEM -->
+<div class="section" id="problem">
+  <div class="sh r">
+    <span class="sh-tag">The Problem</span>
+    <h2 class="sh-h2">Most CPAs are exceptional<br><em>at their work. Invisible online.</em></h2>
+    <p class="sh-p">You have the expertise. You don't have the audience. Here's why that gap is costing you.</p>
+  </div>
+  <div class="problem-list">
+    <div class="prob r">
+      <div class="prob-icon">📨</div>
+      <div class="prob-title">Referral dependency</div>
+      <div class="prob-body">Your best clients came from word-of-mouth years ago. One slow quarter and revenue drops. No predictable inbound channel exists.</div>
+    </div>
+    <div class="prob r d1">
+      <div class="prob-icon">👤</div>
+      <div class="prob-title">Invisible expertise</div>
+      <div class="prob-body">You know tax strategy, advisory, M&A — but nobody outside your current network knows it. Your expertise exists. Your audience doesn't.</div>
+    </div>
+    <div class="prob r d2">
+      <div class="prob-icon">📈</div>
+      <div class="prob-title">The authority gap</div>
+      <div class="prob-body">A CPA posting twice a week on LinkedIn pulls in CFO inquiries every month. Clients pay more to the expert they can find — not the best one in the room.</div>
+    </div>
+    <div class="prob r d3">
+      <div class="prob-icon">⏱</div>
+      <div class="prob-title">No time to build it</div>
+      <div class="prob-body">Every hour spent on content is an hour not billing. The trap compounds — and most CPAs never find a way out of it on their own.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- HOW IT WORKS -->
+<div class="section" id="how">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="sh r" style="margin-bottom:0;">
+      <span class="sh-tag">How It Works</span>
+      <h2 class="sh-h2">Done for you.<br><em>Start to finish.</em></h2>
+      <p class="sh-p">You focus on your clients. I handle everything else — strategy, writing, publishing, and outreach.</p>
+    </div>
+    <div class="process-list">
+      <div class="step-row r">
+        <div class="step-n">01</div>
+        <div class="step-content">
+          <div class="step-title">Niche & voice discovery</div>
+          <div class="step-body">One 60-minute call. I learn your speciality, the clients you want to attract, and how you naturally communicate. Everything documented before we write a word.</div>
+        </div>
+      </div>
+      <div class="step-row r d1">
+        <div class="step-n">02</div>
+        <div class="step-content">
+          <div class="step-title">Content system build</div>
+          <div class="step-body">I build your full content calendar, write every post around your real expertise, and manage your publishing schedule. You review and approve — nothing goes live without your sign-off.</div>
+        </div>
+      </div>
+      <div class="step-row r d2">
+        <div class="step-n">03</div>
+        <div class="step-content">
+          <div class="step-title">Visibility expansion</div>
+          <div class="step-body">Strategic engagement on ideal client posts, targeted connection outreach to US business owners and CFOs, and profile optimization that converts visitors into inquiries.</div>
+        </div>
+      </div>
+      <div class="step-row r d3">
+        <div class="step-n">04</div>
+        <div class="step-content">
+          <div class="step-title">Monthly results reporting</div>
+          <div class="step-body">Clear monthly reports tracking impressions, follower growth, and conversations started. You see exactly what's working and what your LinkedIn is producing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PACKAGES -->
+<div class="section" id="packages">
+  <div class="sh r" style="max-width:600px;">
+    <span class="sh-tag">Services</span>
+    <h2 class="sh-h2">Choose your<br><em>level of visibility.</em></h2>
+    <p class="sh-p">All engagements are minimum 3 months. Real LinkedIn results compound — month 1 plants the seed, month 3 is when inbound starts. Pricing shared on your strategy call.</p>
+  </div>
+  <div class="pkg-grid">
+
+    <div class="pkg-card r">
+      <div class="pkg-tier">Tier 01</div>
+      <div class="pkg-name">Starter</div>
+      <div class="pkg-tagline">Consistent presence, zero effort</div>
+      <hr class="pkg-sep">
+      <ul class="pkg-feats">
+        <li>Full LinkedIn profile overhaul</li>
+        <li>8 posts per month</li>
+        <li>Headline, banner & about rewrite</li>
+        <li>Monthly strategy call</li>
+        <li>Hook & hashtag strategy</li>
+        <li>End-of-month analytics report</li>
+      </ul>
+      <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="pkg-cta-btn" target="_blank">Book a Call</a>
+      <div class="pkg-terms">3 · 6 · 12 month terms available</div>
+    </div>
+
+    <div class="pkg-card pop r d1">
+      <div class="pop-badge">Most Popular</div>
+      <div class="pkg-tier">Tier 02</div>
+      <div class="pkg-name">Authority</div>
+      <div class="pkg-tagline">Become the go-to CPA in your niche</div>
+      <hr class="pkg-sep">
+      <ul class="pkg-feats">
+        <li>Everything in Starter</li>
+        <li>16 posts per month</li>
+        <li>Daily engagement management</li>
+        <li>ICP-targeted connection outreach</li>
+        <li>Weekly strategy call</li>
+        <li>Banner & headline A/B refresh</li>
+        <li>Monthly performance report</li>
+      </ul>
+      <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="pkg-cta-btn" target="_blank">Book a Call</a>
+      <div class="pkg-terms">3 · 6 · 12 month terms available</div>
+    </div>
+
+    <div class="pkg-card r d2">
+      <div class="pkg-tier">Tier 03</div>
+      <div class="pkg-name">Rainmaker</div>
+      <div class="pkg-tagline">Full content + outbound system</div>
+      <hr class="pkg-sep">
+      <ul class="pkg-feats">
+        <li>Everything in Authority</li>
+        <li>20 posts per month</li>
+        <li>DM outreach to CFOs & owners</li>
+        <li>Lead pipeline tracking</li>
+        <li>Newsletter ghostwriting (2/mo)</li>
+        <li>Speaking opportunity prep</li>
+        <li>Quarterly brand audit</li>
+      </ul>
+      <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="pkg-cta-btn" target="_blank">Book a Call</a>
+      <div class="pkg-terms">3 · 6 · 12 month terms available</div>
+    </div>
+
+    <div class="pkg-card r d3">
+      <div class="pkg-tier">Tier 04</div>
+      <div class="pkg-name">Empire</div>
+      <div class="pkg-tagline">National reputation, full brand management</div>
+      <hr class="pkg-sep">
+      <ul class="pkg-feats">
+        <li>Everything in Rainmaker</li>
+        <li>Podcast & media pitching</li>
+        <li>LinkedIn + newsletter managed</li>
+        <li>Direct strategist access</li>
+        <li>Monthly ROI attribution</li>
+        <li>New service launch support</li>
+        <li>Quarterly competitor analysis</li>
+      </ul>
+      <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="pkg-cta-btn" target="_blank">Book a Call</a>
+      <div class="pkg-terms">3 · 6 · 12 month terms available</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="about-wrap">
+    <div class="about-left r">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIZrjT1htSXcRnxbzn-3nyANByFHUQOc0lRVBlNPb_Ng1Ofvns2Q5AnvBo92EYVi5JUKNsV9Dly9emG_da17R1DszRl1AL_bKAfIzbfQnpikUV-dTJYJ0gFGZjiVZhXdk-y6EAxT6Gq71m5Wbe4KxbiE1vFTc-xvMCfwuGvBfBbuXYR-HGDNPWVFruf97S/s1200/ChatGPT%20Image%20Dec%2021,%202025,%2001_20_12%20PM.png" alt="Harsh Kaklotar"
+        style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+    </div>
+    <div class="about-right">
+      <div class="sh" style="margin-bottom:0;">
+        <span class="sh-tag r">About</span>
+        <div class="about-name r d1">Harsh Kaklotar</div>
+        <div class="about-role r d1">LinkedIn Strategist · US CPA Professionals</div>
+        <p class="about-body r d2">
+          I'm a <strong>CA Finalist with 4 years of US accounting experience</strong> — which means I understand your work at a level most marketers never will.<br><br>
+          I know tax advisory, client onboarding, billing structures, and the language CPAs use with their clients. That expertise shapes every post I write for you. Your audience feels the difference immediately — because the content actually sounds like someone who knows the profession.
+        </p>
+        <div class="creds r d3">
+          <div class="cred"><div class="cred-dot"></div>CA Finalist — ICAI</div>
+          <div class="cred"><div class="cred-dot"></div>QuickBooks ProAdvisor Certified</div>
+          <div class="cred"><div class="cred-dot"></div>4 Years US Accounting & KPO Experience</div>
+          <div class="cred"><div class="cred-dot"></div>EA Certification In Progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROOF -->
+<div class="section">
+  <div class="proof-wrap r">
+    <p class="proof-quote">
+      "Before managing your LinkedIn, I built my own —
+      <em><span data-key="topPost">—</span> impressions, <span data-key="followers">—</span> followers, Big 4 firms watching</em>
+      — in under 30 days of consistent posting."
+    </p>
+    <p class="proof-attr">Harsh Kaklotar · Own LinkedIn profile · Verified analytics</p>
+    <div class="proof-nums">
+      <div class="proof-num-cell">
+        <span class="proof-big" data-key="topPost">—</span>
+        <span class="proof-lbl">Best single post impressions</span>
+      </div>
+      <div class="proof-num-cell">
+        <span class="proof-big" data-key="reached">—</span>
+        <span class="proof-lbl">Unique professionals reached</span>
+      </div>
+      <div class="proof-num-cell">
+        <span class="proof-big" data-key="accountingAudience">—</span>
+        <span class="proof-lbl">Audience in accounting industry</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS TIMELINE -->
+<hr class="divider">
+<div class="section" id="results">
+  <div class="sh r">
+    <span class="sh-tag">What to Expect</span>
+    <h2 class="sh-h2">Results by month,<br><em>not by magic.</em></h2>
+    <p class="sh-p">LinkedIn compounds. Here's exactly what happens across your first 3 months — no vague promises.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-cell r">
+      <div class="tl-num">1</div>
+      <span class="tl-month">Month 1 — Foundation</span>
+      <div class="tl-title">Profile overhauled. System live. Algorithm warming.</div>
+      <ul class="tl-items">
+        <li>Full profile rewrite — headline, about, banner, featured</li>
+        <li>Content calendar built around your niche</li>
+        <li>First 8–16 posts published and live</li>
+        <li>Hashtag and hook strategy deployed</li>
+        <li>Initial follower growth begins</li>
+      </ul>
+    </div>
+    <div class="tl-cell r d1">
+      <div class="tl-num">2</div>
+      <span class="tl-month">Month 2 — Momentum</span>
+      <div class="tl-title">Engagement building. Ideal clients discovering you.</div>
+      <ul class="tl-items">
+        <li>Follower growth accelerating week on week</li>
+        <li>Inbound connection requests from target clients</li>
+        <li>Profile views increasing from CFOs and business owners</li>
+        <li>Content outreach and engagement campaigns running</li>
+        <li>First inbound DMs from interested prospects</li>
+      </ul>
+    </div>
+    <div class="tl-cell r d2">
+      <div class="tl-num">3</div>
+      <span class="tl-month">Month 3 — Inbound</span>
+      <div class="tl-title">Conversations started. Clients finding you.</div>
+      <ul class="tl-items">
+        <li>Consistent inbound inquiries from content alone</li>
+        <li>CFO and business owner conversations in DMs</li>
+        <li>Speaking and media opportunities beginning</li>
+        <li>Clear ROI attribution — what LinkedIn is producing</li>
+        <li>Strategy reset for next phase of growth</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<!-- <hr class="divider">
+<div class="section" id="testimonials">
+  <div class="sh r">
+    <span class="sh-tag">Results</span>
+    <h2 class="sh-h2">What CPAs say<br><em>after working together.</em></h2>
+    <p class="sh-p">Early client results. More case studies added as they come in.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card r">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"I'd been meaning to get active on LinkedIn for two years. In 6 weeks of working with Harsh, my profile went from dormant to pulling in two qualified inquiries from CFOs I'd never have reached otherwise. The content actually sounds like me — not generic finance fluff."</p>
+      <div class="testi-person">
+        <div class="testi-avatar">MR</div>
+        <div>
+          <span class="testi-name">Michael R., CPA</span>
+          <span class="testi-title">Tax Advisory · New York, NY</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card r d1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"What surprised me most was how quickly the right people started showing up in my notifications — not random followers, but actual business owners in my target market. By month 2 I had three conversations going that none of my previous marketing had ever produced."</p>
+      <div class="testi-person">
+        <div class="testi-avatar">SL</div>
+        <div>
+          <span class="testi-name">Sarah L., CPA</span>
+          <span class="testi-title">CFO Services · Miami, FL</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-placeholder r d2">
+      <div class="testi-placeholder-icon">💬</div>
+      <p class="testi-placeholder-text">More client results being added.<br>Currently onboarding new clients — case studies coming soon.</p>
+    </div>
+  </div>
+</div> -->
+
+<!-- FAQ -->
+<!-- <hr class="divider">
+<div class="section" id="faq">
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
+    <div class="sh r" style="margin-bottom:0;">
+      <span class="sh-tag">FAQ</span>
+      <h2 class="sh-h2">Questions<br><em>CPAs always ask.</em></h2>
+      <p class="sh-p">Straight answers. No fluff.</p>
+    </div>
+    <div class="faq-list r">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do you actually understand US tax and accounting?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">I'm a CA Finalist with 4 years of experience working in a US-focused KPO firm handling US accounting clients. I understand tax advisory, bookkeeping, CFO services, audit — and how CPAs talk about their work with clients. <strong>Your content won't sound like it was written by a marketer who Googled "CPA."</strong> That's the core difference.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long before I see real results?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Month 1 is foundation — profile, content system, first posts live. Month 2 is momentum — follower growth accelerates, ideal clients start discovering you. <strong>Month 3 is when inbound starts — DMs, connection requests, and conversations from content alone.</strong> That's why all engagements are minimum 3 months. LinkedIn compounds. One month tells you nothing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What if I don't like the content?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Nothing goes live without your approval. Every post is sent to you for review before publishing. <strong>If you want changes — tone, topic, examples — I revise until it's right.</strong> The first 2 weeks are a calibration period where I learn your voice precisely. After that, revisions become rare.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How much of my time does this require?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">One 60-minute onboarding call to start. After that, <strong>roughly 15–20 minutes per week</strong> to review and approve content. I handle strategy, writing, publishing, engagement, outreach, and reporting. You focus on your clients.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do you work with multiple CPAs in the same niche?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><strong>No. I take one client per niche per market.</strong> If you specialise in tax advisory for small businesses in New York, I won't take another CPA with the same profile while you're a client. Your positioning is protected. This is part of why spots are limited.</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- FINAL CTA -->
+<div class="section">
+  <div class="fcta-wrap r">
+    <h2>Ready to become<br>the CPA clients find?</h2>
+    <p>Book a free 20-minute strategy call. No pitch, no pressure — just a clear picture of what your LinkedIn could look like in 90 days.</p>
+    <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="btn-fill" style="display:inline-block;">Book Your Free Strategy Call</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Harsh<span>Kaklotar</span>.me</a>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/harsh-kaklotar" target="_blank">LinkedIn</a>
+    <a href="#packages">Services</a>
+    <a href="mailto:contact@harshkaklotar.me">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Harsh Kaklotar</div>
+</footer>
+
+<script>
+// Inject stats from data.js
+document.querySelectorAll('[data-key]').forEach(el => {
+  const k = el.getAttribute('data-key');
+  if (STATS[k]) el.textContent = STATS[k];
+});
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 20);
+});
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.r').forEach(el => ro.observe(el));
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
