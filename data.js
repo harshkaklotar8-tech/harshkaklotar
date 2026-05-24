@@ -5,11 +5,11 @@
 // ─────────────────────────────────────────
 
 const STATS = {
-  impressions:       "117,420",   // Total impressions (90 days)
-  reached:           "70,557",    // Unique members reached
-  followers:         "578",       // Current followers
-  topPost:           "95,136",    // Best single post impressions
-  accountingAudience:"44.5%",     // % audience in accounting industry
+  impressions:       "142,231",   // Total impressions (90 days)
+  reached:           "82,175",    // Unique members reached
+  followers:         "649",       // Current followers
+  topPost:           "107,929",    // Best single post impressions
+  accountingAudience:"43.9%",     // % audience in accounting industry
 };
 
-const LAST_UPDATED = "May 20, 2026";
+const LAST_UPDATED = "May 24, 2026";
