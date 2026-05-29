@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Kaklotar — LinkedIn Branding for US CPAs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --white:#fff;--off:#f7f7f5;--ink:#0f0f0f;--ink2:#3a3a3a;--ink3:#767676;
+  --line:#e8e8e4;--accent:#1a56db;--accent2:#0e3fa8;--tag-bg:#eef3ff;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --ease2:cubic-bezier(0.34,1.56,0.64,1);
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:'Sora',sans-serif;font-weight:300;
+  font-size:16px;line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  cursor:default;
+}
+a,button,input{cursor:default;font-family:inherit;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px;}
+
+/* ─── CANVAS BG ─── */
+#bgc{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* ─── STICKY PROGRESS BAR ─── */
+#prog{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:200;
+  background:linear-gradient(90deg,var(--accent),#6fa3ff);
+  transform-origin:left;transform:scaleX(0);
+  transition:transform 0.1s linear;
+  box-shadow:0 0 12px rgba(26,86,219,0.6);
+}
+
+/* ─── FLOATING NAV PILL ─── */
+#floatnav{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:100;display:flex;gap:6px;align-items:center;
+  background:rgba(15,15,15,0.92);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);border-radius:100px;
+  padding:8px 16px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.35);
+  transition:opacity 0.3s,transform 0.3s var(--ease);
+}
+#floatnav.hidden{opacity:0;transform:translateX(-50%) translateY(12px);pointer-events:none;}
+.fnav-dot{
+  width:28px;height:28px;border-radius:50%;border:none;
+  background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);
+  font-size:10px;font-weight:700;letter-spacing:-0.02em;
+  transition:all 0.25s var(--ease);display:flex;align-items:center;justify-content:center;
+}
+.fnav-dot:hover,.fnav-dot.active{
+  background:var(--accent);color:var(--white);
+  transform:scale(1.15);
+  box-shadow:0 0 16px rgba(26,86,219,0.5);
+}
+.fnav-sep{width:1px;height:14px;background:rgba(255,255,255,0.1);}
+
+/* ─── SECTIONS ─── */
+section{position:relative;z-index:1;overflow:hidden;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 64px;}
+
+/* ─── REVEAL SYSTEM ─── */
+.rr{opacity:0;transform:translateY(40px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
+.rr.in{opacity:1;transform:none;}
+.rr.d1{transition-delay:0.07s;}
+.rr.d2{transition-delay:0.14s;}
+.rr.d3{transition-delay:0.21s;}
+.rr.d4{transition-delay:0.28s;}
+.rr.d5{transition-delay:0.35s;}
+.rr.d6{transition-delay:0.42s;}
+
+/* slide from left */
+.rl{opacity:0;transform:translateX(-40px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
+.rl.in{opacity:1;transform:none;}
+
+/* scale up */
+.rs{opacity:0;transform:scale(0.88);transition:opacity 0.75s var(--ease2),transform 0.75s var(--ease2);}
+.rs.in{opacity:1;transform:scale(1);}
+
+/* ─── LABELS ─── */
+.lbl{
+  font-size:11px;font-weight:700;color:var(--accent);
+  letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:14px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:var(--ink);padding:120px 0 80px;
+  clip-path:polygon(0 0,100% 0,100% 92%,0 100%);
+  margin-bottom:-4%;
+}
+.hero-wrap{max-width:1100px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(26,86,219,0.2);border:1px solid rgba(93,148,249,0.35);
+  color:#93aff5;font-size:11px;font-weight:600;
+  padding:7px 16px;border-radius:100px;letter-spacing:0.03em;margin-bottom:28px;
+}
+.hero-badge-dot{
+  width:7px;height:7px;border-radius:50%;background:#5b93f5;
+  animation:hbpulse 2s ease-in-out infinite;
+}
+@keyframes hbpulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(0.5);opacity:0.3;}}
+
+.hero h1{
+  font-size:clamp(42px,5.5vw,76px);font-weight:900;
+  letter-spacing:-0.045em;line-height:1.03;
+  color:var(--white);margin-bottom:24px;
+}
+.hero h1 .accent-word{
+  color:transparent;
+  background:linear-gradient(135deg,#5b93f5,#93c5fd,#5b93f5);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  animation:gradshift 4s linear infinite;
+}
+@keyframes gradshift{0%{background-position:0% center;}100%{background-position:200% center;}}
+
+.hero-sub{
+  font-size:17px;color:rgba(255,255,255,0.55);
+  line-height:1.75;max-width:520px;font-weight:300;margin-bottom:40px;
+}
+
+.hero-stats-row{display:flex;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;}
+.hstat{flex:1;padding:20px 22px;border-right:1px solid rgba(255,255,255,0.06);}
+.hstat:last-child{border-right:none;}
+.hstat-n{
+  font-size:28px;font-weight:800;color:var(--white);
+  letter-spacing:-0.04em;line-height:1;display:block;
+}
+.hstat-l{font-size:10px;color:rgba(255,255,255,0.35);margin-top:5px;display:block;line-height:1.4;}
+
+/* Hero right card */
+.hero-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:20px;padding:32px;
+  position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,86,219,0.35),transparent 70%);
+  pointer-events:none;
+}
+.hcard-label{
+  font-size:10px;font-weight:700;color:rgba(255,255,255,0.3);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;display:block;
+}
+.hcard-stat{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.hcard-stat:last-of-type{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.hcard-num{
+  font-size:36px;font-weight:800;color:var(--white);
+  letter-spacing:-0.04em;line-height:1;display:block;
+  transition:color 0.3s;
+}
+.hcard-lbl{font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;display:block;}
+.hcard-quote{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:13px;color:rgba(255,255,255,0.45);
+  line-height:1.75;border-top:1px solid rgba(255,255,255,0.07);
+  padding-top:20px;margin-top:20px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION HEADERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sh-block{margin-bottom:52px;}
+.sh-block h2{
+  font-size:clamp(30px,4vw,52px);font-weight:800;
+  letter-spacing:-0.04em;line-height:1.08;color:var(--ink);
+}
+.sh-block h2 .dim{color:var(--ink3);font-weight:300;}
+.sh-block p{
+  font-size:16px;color:var(--ink3);max-width:520px;
+  line-height:1.75;margin-top:14px;font-weight:300;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S2: PROBLEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#problem{padding:120px 0 100px;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.pain-card{
+  padding:28px 24px;border:1px solid var(--line);border-radius:16px;
+  background:var(--white);position:relative;overflow:hidden;
+  transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease),border-color 0.3s;
+}
+.pain-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,86,219,0.05),transparent 60%);
+  opacity:0;transition:opacity 0.4s;
+}
+.pain-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 24px 64px rgba(0,0,0,0.09);border-color:#c5d3f5;}
+.pain-card:hover::after{opacity:1;}
+.pain-icon{font-size:26px;margin-bottom:14px;display:block;
+  transition:transform 0.4s var(--ease2);}
+.pain-card:hover .pain-icon{transform:scale(1.2) rotate(-5deg);}
+.pain-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-0.015em;}
+.pain-body{font-size:12.5px;color:var(--ink3);line-height:1.7;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S3: WHO I AM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#whyme{padding:100px 0;background:var(--off);}
+.whyme-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.cred-list{display:flex;flex-direction:column;gap:12px;}
+.cred-item{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;border:1px solid var(--line);border-radius:14px;
+  background:var(--white);
+  transition:transform 0.3s var(--ease),box-shadow 0.3s,border-color 0.3s;
+  position:relative;overflow:hidden;
+}
+.cred-item::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:0;
+  background:var(--accent);transition:width 0.3s var(--ease);border-radius:14px 0 0 14px;
+}
+.cred-item:hover{transform:translateX(8px);box-shadow:0 8px 32px rgba(0,0,0,0.07);border-color:#c5d3f5;}
+.cred-item:hover::before{width:3px;}
+.cred-ico{
+  width:38px;height:38px;border-radius:10px;background:var(--tag-bg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;flex-shrink:0;
+  transition:transform 0.3s var(--ease2);
+}
+.cred-item:hover .cred-ico{transform:scale(1.1) rotate(-5deg);}
+.cred-ttl{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.cred-body{font-size:12px;color:var(--ink3);line-height:1.65;}
+
+/* Proof panel */
+.proof-panel{
+  background:var(--ink);border-radius:22px;padding:36px;
+  position:sticky;top:100px;
+  overflow:hidden;
+}
+.proof-panel::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;
+  border-radius:50%;background:radial-gradient(circle,rgba(26,86,219,0.45),transparent 65%);
+  animation:glow-rotate 6s linear infinite;
+}
+@keyframes glow-rotate{0%{transform:rotate(0deg) scale(1);}50%{transform:rotate(180deg) scale(1.15);}100%{transform:rotate(360deg) scale(1);}}
+.proof-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;display:block;}
+.proof-stat{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.proof-stat:last-of-type{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.proof-num{
+  font-size:40px;font-weight:900;color:var(--white);
+  letter-spacing:-0.045em;line-height:1;display:block;
+}
+.proof-sublbl{font-size:11px;color:rgba(255,255,255,0.35);margin-top:5px;}
+.proof-qt{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:13px;color:rgba(255,255,255,0.45);
+  line-height:1.75;margin-top:22px;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S4: HOW IT WORKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#howitworks{padding:100px 0;}
+.steps{position:relative;display:flex;flex-direction:column;gap:0;}
+.steps::before{
+  content:'';position:absolute;left:22px;top:24px;bottom:24px;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);
+  opacity:0.3;
+}
+.step{
+  display:flex;gap:28px;padding:24px 0;
+  border-bottom:1px solid var(--line);
+  transition:transform 0.3s var(--ease);
+}
+.step:last-child{border-bottom:none;}
+.step:hover{transform:translateX(10px);}
+.step-num{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--white);border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:var(--ink3);
+  flex-shrink:0;position:relative;z-index:1;
+  transition:all 0.35s var(--ease);
+}
+.step:hover .step-num{
+  background:var(--accent);border-color:var(--accent);color:var(--white);
+  transform:scale(1.1);box-shadow:0 0 0 6px rgba(26,86,219,0.12);
+}
+.step-ttl{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-0.015em;}
+.step-desc{font-size:13px;color:var(--ink3);line-height:1.7;}
+.step-tag{
+  display:inline-block;font-size:10px;font-weight:700;
+  background:var(--tag-bg);color:var(--accent);
+  padding:3px 10px;border-radius:100px;margin-top:8px;letter-spacing:0.03em;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S5: TIMELINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#timeline{padding:100px 0;background:var(--off);}
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+.tl-col{
+  padding:36px 28px;border-right:1px solid var(--line);
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.tl-col:last-child{border-right:none;}
+.tl-col::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--line);transition:background 0.4s,box-shadow 0.4s;
+}
+.tl-col:hover{background:rgba(26,86,219,0.02);}
+.tl-col:hover::before{background:var(--accent);box-shadow:0 0 20px rgba(26,86,219,0.5);}
+.tl-mo{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.tl-h{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-0.025em;margin-bottom:4px;}
+.tl-sub{font-family:'Lora',serif;font-style:italic;font-size:12px;color:var(--ink3);margin-bottom:20px;line-height:1.5;}
+.tl-items{list-style:none;}
+.tl-items li{
+  font-size:12.5px;color:var(--ink2);
+  padding:7px 0;border-bottom:1px solid var(--line);
+  display:flex;gap:10px;line-height:1.5;
+}
+.tl-items li:last-child{border-bottom:none;}
+.tl-items li::before{content:'→';color:var(--accent);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px;}
+
+.tl-note{
+  margin-top:24px;padding:20px 24px;
+  background:var(--tag-bg);border:1px solid rgba(26,86,219,0.15);border-radius:12px;
+}
+.tl-note strong{font-size:13px;color:var(--accent);font-weight:700;display:block;margin-bottom:6px;}
+.tl-note span{font-size:13px;color:var(--ink2);line-height:1.7;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S6: TRUST / CREDIBILITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#trust{padding:100px 0;}
+.trust-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;}
+.trust-points{display:flex;flex-direction:column;gap:14px;}
+.trust-point{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:22px;border:1px solid var(--line);border-radius:14px;
+  background:var(--white);
+  position:relative;overflow:hidden;
+  transition:all 0.35s var(--ease);
+}
+.trust-point:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,86,219,0.09);}
+.tp-icon{
+  font-size:22px;width:44px;height:44px;
+  background:var(--tag-bg);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:transform 0.35s var(--ease2);
+}
+.trust-point:hover .tp-icon{transform:scale(1.15) rotate(-8deg);}
+.tp-ttl{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:-0.01em;}
+.tp-body{font-size:12.5px;color:var(--ink3);line-height:1.7;}
+
+/* ROI calculator */
+.roi-calc{
+  background:var(--ink);border-radius:22px;padding:36px;
+  position:sticky;top:100px;overflow:hidden;
+}
+.roi-calc::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(26,86,219,0.4),transparent 70%);
+  pointer-events:none;animation:glow-rotate 8s linear infinite reverse;
+}
+.roi-calc-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:block;}
+.roi-calc h3{font-size:22px;font-weight:800;color:var(--white);letter-spacing:-0.03em;margin-bottom:8px;line-height:1.2;}
+.roi-calc p{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:24px;line-height:1.65;}
+.roi-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.roi-row:last-of-type{border-bottom:none;}
+.roi-row-l{font-size:12.5px;color:rgba(255,255,255,0.5);}
+.roi-row-r{font-size:14px;font-weight:700;color:var(--white);}
+.roi-total{
+  margin-top:20px;padding:18px 20px;
+  background:rgba(26,86,219,0.25);border:1px solid rgba(26,86,219,0.35);
+  border-radius:12px;
+}
+.roi-total-l{font-size:12px;color:#93aff5;font-weight:600;display:block;margin-bottom:4px;}
+.roi-total-r{font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.04em;}
+.roi-note{font-size:11px;color:rgba(255,255,255,0.25);margin-top:14px;line-height:1.6;text-align:center;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S7: PRICING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#pricing{padding:100px 0;background:var(--off);}
+.term-toggle{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;}
+.tt-btn{
+  font-size:12px;font-weight:600;padding:9px 20px;
+  border-radius:100px;border:1px solid var(--line);
+  background:var(--white);color:var(--ink3);
+  transition:all 0.25s;letter-spacing:-0.01em;
+}
+.tt-btn.on{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.tt-btn:hover:not(.on){border-color:var(--ink2);color:var(--ink);}
+
+.pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.pkg-card{
+  background:var(--white);border:1px solid var(--line);border-radius:18px;
+  padding:28px 22px;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease),border-color 0.3s;
+}
+.pkg-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(150deg,rgba(26,86,219,0.05),transparent 50%);
+  opacity:0;transition:opacity 0.4s;
+}
+.pkg-card:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(0,0,0,0.1);border-color:#b8c9f5;}
+.pkg-card:hover::before{opacity:1;}
+.pkg-card.pop{border-color:var(--accent);background:#fafbff;}
+
+/* shimmer on featured */
+.pkg-card.pop::after{
+  content:'';position:absolute;top:0;left:-100%;right:100%;bottom:0;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:shimmer 2.5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes shimmer{0%{left:-100%;right:100%;}100%{left:100%;right:-100%;}}
+
+.pop-badge{
+  position:absolute;top:-1px;right:18px;
+  background:var(--accent);color:var(--white);
+  font-size:10px;font-weight:800;padding:5px 14px;
+  border-radius:0 0 10px 10px;letter-spacing:0.04em;text-transform:uppercase;
+}
+.pkg-tier{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+.pkg-name{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-0.03em;margin-bottom:3px;}
+.pkg-tagline{font-size:12px;color:var(--ink3);font-family:'Lora',serif;font-style:italic;margin-bottom:20px;line-height:1.5;}
+.pkg-price{
+  font-size:38px;font-weight:900;color:var(--ink);letter-spacing:-0.05em;line-height:1;
+  transition:all 0.3s var(--ease);
+}
+.pkg-price sup{font-size:18px;font-weight:700;vertical-align:super;letter-spacing:0;}
+.pkg-price-lbl{font-size:11px;color:var(--ink3);margin-top:4px;display:block;}
+.pkg-save{
+  display:inline-block;font-size:10px;font-weight:800;color:var(--accent);
+  background:var(--tag-bg);padding:3px 10px;border-radius:100px;margin-top:8px;
+  visibility:hidden;
+}
+.pkg-sep{border:none;border-top:1px solid var(--line);margin:18px 0;}
+.pkg-feats{list-style:none;flex:1;margin-bottom:18px;}
+.pkg-feats li{
+  font-size:12px;color:var(--ink2);padding:6px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;gap:8px;align-items:flex-start;line-height:1.5;
+}
+.pkg-feats li:last-child{border-bottom:none;}
+.pkg-feats li::before{content:'✓';color:var(--accent);font-weight:800;font-size:11px;flex-shrink:0;margin-top:2px;}
+.pkg-cta{
+  display:block;text-align:center;font-size:12px;font-weight:700;
+  padding:12px;border-radius:100px;text-decoration:none;
+  border:1.5px solid var(--ink);color:var(--ink);background:var(--white);
+  transition:all 0.25s;letter-spacing:-0.01em;
+}
+.pkg-cta:hover{background:var(--ink);color:var(--white);}
+.pkg-card.pop .pkg-cta{background:var(--accent);color:var(--white);border-color:var(--accent);}
+.pkg-card.pop .pkg-cta:hover{background:var(--accent2);border-color:var(--accent2);}
+.pkg-micronote{font-size:10.5px;color:var(--ink3);text-align:center;margin-top:10px;line-height:1.5;}
+
+.price-footnotes{
+  margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;
+}
+.pf{font-size:12px;color:var(--ink3);display:flex;gap:8px;align-items:center;}
+.pf::before{content:'✓';color:var(--accent);font-weight:700;font-size:11px;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S8: COMPARISON TABLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#compare{padding:100px 0;}
+.ct{border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+.ct-head{display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr;background:var(--off);border-bottom:1px solid var(--line);}
+.ct-hc{padding:14px 18px;font-size:11px;font-weight:800;color:var(--ink);text-align:center;letter-spacing:-0.01em;}
+.ct-hc:first-child{text-align:left;color:var(--ink3);font-weight:400;}
+.ct-hc.hl{color:var(--accent);}
+.ct-row{display:grid;grid-template-columns:2.4fr 1fr 1fr 1fr 1fr;border-bottom:1px solid var(--line);transition:background 0.2s;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:var(--off);}
+.ct-row.cat .ct-cell{font-size:9px;font-weight:800;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;background:#fafaf8;padding:10px 18px;}
+.ct-cell{padding:13px 18px;font-size:12.5px;color:var(--ink2);text-align:center;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line);}
+.ct-cell:first-child{text-align:left;justify-content:flex-start;border-left:none;color:var(--ink);}
+.ct-cell.y{color:var(--accent);font-size:16px;font-weight:800;}
+.ct-cell.n{color:#d8d8d4;font-size:16px;}
+.ct-cell.v{font-weight:700;color:var(--ink);}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S9: OBJECTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#objections{padding:100px 0;background:var(--off);}
+.obj-grid{display:flex;flex-direction:column;gap:10px;}
+.obj-card{
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  background:var(--white);
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.obj-card.open{border-color:var(--accent);box-shadow:0 6px 28px rgba(26,86,219,0.1);}
+.obj-q{
+  width:100%;background:none;border:none;
+  padding:20px 24px;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;text-align:left;
+}
+.obj-q-l{display:flex;gap:14px;align-items:center;}
+.obj-q-badge{
+  font-size:9px;font-weight:800;padding:3px 10px;border-radius:100px;
+  letter-spacing:0.06em;text-transform:uppercase;flex-shrink:0;
+  background:var(--tag-bg);color:var(--accent);
+}
+.obj-q-badge.price{background:#fff5e6;color:#c47c00;}
+.obj-q-text{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.35;}
+.obj-icon{
+  width:30px;height:30px;border-radius:50%;
+  border:1.5px solid var(--line);background:var(--off);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink3);flex-shrink:0;
+  transition:all 0.35s var(--ease2);
+}
+.obj-card.open .obj-icon{background:var(--accent);border-color:var(--accent);color:var(--white);transform:rotate(45deg);}
+.obj-a{
+  font-size:13.5px;color:var(--ink2);line-height:1.8;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.45s var(--ease),padding 0.3s;
+  padding:0 24px;
+}
+.obj-card.open .obj-a{max-height:350px;padding:0 24px 24px;}
+.obj-a strong{color:var(--ink);font-weight:700;}
+.obj-a .highlight{
+  display:inline-block;margin-top:12px;padding:12px 16px;
+  background:var(--tag-bg);border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;font-size:13px;font-weight:600;color:var(--accent);
+  line-height:1.5;width:100%;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S10: WHY EXCLUSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#exclusive{padding:100px 0;background:var(--ink);overflow:hidden;position:relative;}
+#exclusive::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,86,219,0.2),transparent 65%);
+  pointer-events:none;animation:glow-rotate 12s linear infinite;
+}
+.excl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.excl-card{
+  border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px 24px;
+  transition:border-color 0.35s,transform 0.35s var(--ease),background 0.35s;
+  position:relative;overflow:hidden;
+}
+.excl-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,86,219,0.08),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.excl-card:hover{border-color:rgba(26,86,219,0.4);transform:translateY(-6px);}
+.excl-card:hover::before{opacity:1;}
+.excl-ico{font-size:26px;margin-bottom:14px;display:block;transition:transform 0.4s var(--ease2);}
+.excl-card:hover .excl-ico{transform:scale(1.2) rotate(-8deg);}
+.excl-ttl{font-size:15px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-0.015em;}
+.excl-body{font-size:12.5px;color:rgba(255,255,255,0.4);line-height:1.7;}
+
+.excl-banner{
+  margin-top:40px;display:flex;gap:28px;align-items:center;
+  padding:28px 36px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;
+}
+.excl-big{font-size:60px;font-weight:900;color:var(--white);letter-spacing:-0.06em;line-height:1;white-space:nowrap;flex-shrink:0;}
+.excl-big span{font-size:28px;color:rgba(255,255,255,0.25);}
+.excl-text{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;font-weight:300;}
+.excl-text strong{color:var(--white);font-weight:700;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   S11: CLOSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#close{padding:100px 0 120px;}
+.close-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.next-steps{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+.ns{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:22px;border:1px solid var(--line);border-radius:14px;
+  background:var(--white);
+  transition:all 0.35s var(--ease);
+}
+.ns:hover{border-color:var(--accent);transform:translateX(8px);background:var(--tag-bg);}
+.ns-num{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--tag-bg);border:1px solid rgba(26,86,219,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--accent);flex-shrink:0;
+  transition:all 0.3s var(--ease2);
+}
+.ns:hover .ns-num{background:var(--accent);color:var(--white);transform:scale(1.1);}
+.ns-ttl{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.ns-desc{font-size:12.5px;color:var(--ink3);line-height:1.65;}
+
+.tier-recap{
+  margin-top:20px;padding:20px 22px;
+  border:1px solid var(--line);border-radius:14px;background:var(--off);
+}
+.tier-recap-lbl{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:12px;letter-spacing:-0.01em;}
+.tier-recap-row{
+  font-size:13px;color:var(--ink3);padding:8px 0;
+  border-bottom:1px solid var(--line);line-height:1.5;
+}
+.tier-recap-row:last-child{border-bottom:none;}
+.tier-recap-row strong{color:var(--ink2);font-weight:700;}
+
+.close-card{
+  background:var(--ink);border-radius:22px;padding:40px;
+  position:sticky;top:100px;overflow:hidden;
+}
+.close-card::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;
+  border-radius:50%;background:radial-gradient(circle,rgba(26,86,219,0.5),transparent 65%);
+  animation:glow-rotate 7s linear infinite;
+}
+.close-card h3{
+  font-size:30px;font-weight:900;color:var(--white);letter-spacing:-0.04em;
+  line-height:1.1;margin-bottom:12px;position:relative;
+}
+.close-card h3 em{font-style:normal;color:#93aff5;}
+.close-card p{font-size:13.5px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:28px;position:relative;}
+.close-btn{
+  display:block;text-align:center;
+  background:var(--white);color:var(--ink);
+  font-size:14px;font-weight:800;padding:17px;border-radius:100px;
+  text-decoration:none;letter-spacing:-0.02em;
+  transition:all 0.3s var(--ease2);border:none;width:100%;
+  position:relative;
+  animation:close-pulse 3s ease-in-out infinite;
+}
+@keyframes close-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.2);}50%{box-shadow:0 0 0 12px rgba(255,255,255,0);}}
+.close-btn:hover{background:var(--accent);color:var(--white);transform:scale(1.02);}
+.close-note{font-size:11px;color:rgba(255,255,255,0.2);text-align:center;margin-top:14px;letter-spacing:0.02em;}
+.close-promises{display:flex;flex-direction:column;gap:10px;margin-top:20px;position:relative;}
+.cp{
+  display:flex;gap:12px;align-items:center;
+  padding:14px 16px;border:1px solid rgba(255,255,255,0.07);border-radius:10px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.cp:hover{border-color:rgba(26,86,219,0.4);background:rgba(26,86,219,0.08);}
+.cp-icon{font-size:18px;flex-shrink:0;}
+.cp-text{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
+.cp-text strong{color:rgba(255,255,255,0.75);font-weight:700;}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION DIVIDERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.divider{border:none;border-top:1px solid var(--line);max-width:1100px;margin:0 auto;}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="prog"></div>
+
+<!-- CANVAS BG -->
+<canvas id="bgc"></canvas>
+
+<!-- FLOATING NAV -->
+<div id="floatnav">
+  <button class="fnav-dot active" onclick="goTo('hero')" title="Intro">01</button>
+  <button class="fnav-dot" onclick="goTo('problem')" title="Problem">02</button>
+  <button class="fnav-dot" onclick="goTo('whyme')" title="Why Me">03</button>
+  <button class="fnav-dot" onclick="goTo('howitworks')" title="How">04</button>
+  <button class="fnav-dot" onclick="goTo('timeline')" title="Timeline">05</button>
+  <div class="fnav-sep"></div>
+  <button class="fnav-dot" onclick="goTo('trust')" title="Trust & ROI">06</button>
+  <button class="fnav-dot" onclick="goTo('pricing')" title="Pricing">07</button>
+  <button class="fnav-dot" onclick="goTo('compare')" title="Compare">08</button>
+  <div class="fnav-sep"></div>
+  <button class="fnav-dot" onclick="goTo('objections')" title="Objections">09</button>
+  <button class="fnav-dot" onclick="goTo('exclusive')" title="Exclusive">10</button>
+  <button class="fnav-dot" onclick="goTo('close')" title="Close">11</button>
+</div>
+
+<!-- ══════════════════════════════════
+     01 · HERO
+══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge rr"><div class="hero-badge-dot"></div>Confidential · Sales Call</div>
+      <h1 class="rr d1">
+        The only LinkedIn<br>system built for<br><span class="accent-word">US CPAs.</span>
+      </h1>
+      <p class="hero-sub rr d2">Done-for-you content, positioning, and outreach that turns your LinkedIn into a client pipeline — while you stay focused on billable work.</p>
+      <div class="hero-stats-row rr d3">
+        <div class="hstat">
+          <span class="hstat-n countup" data-target="117420" data-div="1000" data-suf="k">0</span>
+          <span class="hstat-l">Impressions<br>in 90 days</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n countup" data-target="70557" data-div="1000" data-suf="k">0</span>
+          <span class="hstat-l">Professionals<br>reached</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n countup" data-target="44" data-div="1" data-suf="%">0</span>
+          <span class="hstat-l">Accounting<br>audience</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n countup" data-target="578" data-div="1" data-suf="">0</span>
+          <span class="hstat-l">Current<br>followers</span>
+        </div>
+      </div>
+    </div>
+    <div class="rr d2">
+      <div class="hero-card">
+        <span class="hcard-label">Verified Analytics · My Own LinkedIn · 90 Days</span>
+        <div class="hcard-stat">
+          <span class="hcard-num">117,420</span>
+          <span class="hcard-lbl">Total impressions</span>
+        </div>
+        <div class="hcard-stat">
+          <span class="hcard-num">70,557</span>
+          <span class="hcard-lbl">Unique members reached</span>
+        </div>
+        <div class="hcard-stat">
+          <span class="hcard-num">95,136</span>
+          <span class="hcard-lbl">Best single post impressions</span>
+        </div>
+        <div class="hcard-stat">
+          <span class="hcard-num">44.5%</span>
+          <span class="hcard-lbl">Audience in accounting industry</span>
+        </div>
+        <div class="hcard-quote">"Built this in under 30 days of consistent posting — in the same niche as the CPAs I serve."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     02 · THE PROBLEM
+══════════════════════════════════ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">The Problem</span>
+      <h2>CPAs are losing clients<br>to <span class="dim">less qualified</span> competitors<br>with better LinkedIn.</h2>
+      <p>You're more experienced. Better qualified. But they're showing up — and you're not. Here's exactly why.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card rr"><span class="pain-icon">👻</span><div class="pain-title">Invisible to ideal clients</div><div class="pain-body">CFOs and business owners search LinkedIn before any referral conversation. If you're not there, you don't exist — regardless of how good you are.</div></div>
+      <div class="pain-card rr d1"><span class="pain-icon">⏳</span><div class="pain-title">No time for consistency</div><div class="pain-body">You intend to post. But between tax deadlines, client calls, and busy seasons, LinkedIn is always what you'll do "next month."</div></div>
+      <div class="pain-card rr d2"><span class="pain-icon">📉</span><div class="pain-title">Generic content, no conversions</div><div class="pain-body">When you do post, it blends in. Tips, quotes, nothing that positions you as the authority in your niche.</div></div>
+      <div class="pain-card rr d3"><span class="pain-icon">💸</span><div class="pain-title">Referral-only pipeline</div><div class="pain-body">Referrals are unpredictable. One slow quarter cascades. LinkedIn builds consistent inbound that doesn't require you to ask for introductions.</div></div>
+      <div class="pain-card rr d4"><span class="pain-icon">🎯</span><div class="pain-title">Attracting peers, not buyers</div><div class="pain-body">Even CPAs who post regularly attract other CPAs — not clients. Targeting and strategy matter more than frequency.</div></div>
+      <div class="pain-card rr d5"><span class="pain-icon">🔇</span><div class="pain-title">Zero niche authority</div><div class="pain-body">Someone in your specialty is building a reputation right now. When the next CFO searches, will they find you — or them?</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     03 · WHO I AM
+══════════════════════════════════ -->
+<section id="whyme">
+  <div class="wrap">
+    <div class="whyme-grid">
+      <div>
+        <div class="sh-block rr">
+          <span class="lbl">Why Me</span>
+          <h2>Accounting expertise.<br><span class="dim">LinkedIn strategy.</span><br>Rare combination.</h2>
+          <p>Most marketers Google "CPA tips." I've spent 4 years doing US accounting work. There's a difference.</p>
+        </div>
+        <div class="cred-list">
+          <div class="cred-item rr d1">
+            <div class="cred-ico">📊</div>
+            <div><div class="cred-ttl">CA Finalist · US Accounting Background</div><div class="cred-body">4 years in a US-focused KPO serving real US clients. Tax advisory, bookkeeping, CFO services — I understand the work from the inside, not a textbook.</div></div>
+          </div>
+          <div class="cred-item rr d2">
+            <div class="cred-ico">✍️</div>
+            <div><div class="cred-ttl">Content That Sounds Like You</div><div class="cred-body">Your audience will never know someone else wrote it. I learn your voice, your niche language, your opinions — and write from that perspective.</div></div>
+          </div>
+          <div class="cred-item rr d3">
+            <div class="cred-ico">🔒</div>
+            <div><div class="cred-ttl">One Client Per Niche, Per Market</div><div class="cred-body">If you do tax advisory for tech startups in Austin, no one else gets that lane while you're a client. Your positioning is protected.</div></div>
+          </div>
+          <div class="cred-item rr d4">
+            <div class="cred-ico">📈</div>
+            <div><div class="cred-ttl">Proven on My Own Profile First</div><div class="cred-body">Everything I recommend, I've tested on my own LinkedIn — in the accounting niche. The numbers you see are verified analytics, not estimates.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rr d2">
+        <div class="proof-panel">
+          <span class="proof-lbl">My LinkedIn · Verified · 90 Days</span>
+          <div class="proof-stat"><span class="proof-num">117,420</span><span class="proof-sublbl">Total impressions</span></div>
+          <div class="proof-stat"><span class="proof-num">70,557</span><span class="proof-sublbl">Unique professionals reached</span></div>
+          <div class="proof-stat"><span class="proof-num">95,136</span><span class="proof-sublbl">Best single post impressions</span></div>
+          <div class="proof-stat"><span class="proof-num">44.5%</span><span class="proof-sublbl">Audience in accounting industry</span></div>
+          <div class="proof-qt">"I built this in under 30 days of consistent posting — on a profile targeting the same niche as the CPAs I serve."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     04 · HOW IT WORKS
+══════════════════════════════════ -->
+<section id="howitworks">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">The System</span>
+      <h2>Done-for-you means<br><span class="dim">actually done for you.</span></h2>
+      <p>15–20 minutes a week from you. Everything else — strategy, writing, publishing, engagement, reporting — handled.</p>
+    </div>
+    <div class="steps">
+      <div class="step rr"><div class="step-num">1</div><div><div class="step-ttl">Onboarding Call · 60 minutes · Once</div><div class="step-desc">I learn your niche, ideal client profile, tone, opinions, and goals. This single call is the foundation of everything — we do this deep-dive once and build from it.</div><div class="step-tag">Your time: 60 min, one time only</div></div></div>
+      <div class="step rr d1"><div class="step-num">2</div><div><div class="step-ttl">Profile Overhaul · Week 1</div><div class="step-desc">Headline, banner, About section, Featured, Skills — all rewritten to attract your ideal client and rank in LinkedIn search. Most CPAs have never done this properly.</div><div class="step-tag">Zero input needed from you</div></div></div>
+      <div class="step rr d2"><div class="step-num">3</div><div><div class="step-ttl">Content Calendar Built</div><div class="step-desc">A full month of posts planned around your niche, your angles, trending accounting topics, and peak engagement windows. Every post has a specific goal — reach, trust, or conversion.</div><div class="step-tag">You review, approve, done</div></div></div>
+      <div class="step rr d3"><div class="step-num">4</div><div><div class="step-ttl">Publishing + Engagement Management</div><div class="step-desc">Posts go live at optimal times. Comments monitored and replied to. The algorithm is kept warm. You focus on clients.</div><div class="step-tag">Zero effort from you</div></div></div>
+      <div class="step rr d4"><div class="step-num">5</div><div><div class="step-ttl">Strategy Calls · Weekly or Monthly</div><div class="step-desc">Regular sessions to review what's working, update content direction, and keep LinkedIn aligned with what's happening in your practice.</div><div class="step-tag">Depending on your tier</div></div></div>
+      <div class="step rr d5"><div class="step-num">6</div><div><div class="step-ttl">Monthly Performance Report</div><div class="step-desc">Clear, readable data — impressions, reach, follower growth, profile views, engagement rate — with plain-English commentary on what's driving inbound.</div><div class="step-tag">Full transparency, every month</div></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     05 · TIMELINE
+══════════════════════════════════ -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">What to Expect</span>
+      <h2>Results by month,<br><span class="dim">not by magic.</span></h2>
+      <p>LinkedIn compounds. Here's exactly what the first 3 months look like — no vague promises.</p>
+    </div>
+    <div class="tl-grid rr d1">
+      <div class="tl-col">
+        <div class="tl-mo">Month 01</div>
+        <div class="tl-h">Foundation</div>
+        <div class="tl-sub">Profile rebuilt. System live. Algorithm warming.</div>
+        <ul class="tl-items">
+          <li>Profile overhaul complete</li>
+          <li>Content calendar built</li>
+          <li>First 8–16 posts published</li>
+          <li>Hook & hashtag strategy live</li>
+          <li>Follower growth begins</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-mo">Month 02</div>
+        <div class="tl-h">Momentum</div>
+        <div class="tl-sub">Engagement building. Ideal clients finding you.</div>
+        <ul class="tl-items">
+          <li>Follower growth week-on-week</li>
+          <li>Inbound connection requests</li>
+          <li>CFO & owner profile views rising</li>
+          <li>Engagement campaigns active</li>
+          <li>First inbound DMs arriving</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-mo">Month 03</div>
+        <div class="tl-h">Inbound</div>
+        <div class="tl-sub">Conversations started. Pipeline forming.</div>
+        <ul class="tl-items">
+          <li>Consistent inbound from content</li>
+          <li>CFO conversations in DMs</li>
+          <li>Speaking & media opportunities</li>
+          <li>Clear ROI attribution visible</li>
+          <li>Strategy reset for next phase</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-note rr d2">
+      <strong>Why the 3-month minimum?</strong>
+      <span>Month 1 plants seeds. Month 2 grows roots. Month 3 bears fruit. One month tells you nothing — three months tells you everything. Most clients renew well past month 3 because the inbound keeps compounding.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     06 · TRUST & ROI
+══════════════════════════════════ -->
+<section id="trust">
+  <div class="wrap">
+    <div class="trust-layout">
+      <div>
+        <div class="sh-block rr">
+          <span class="lbl">Trust & ROI</span>
+          <h2>Why this works —<br><span class="dim">and how to know</span><br>it's worth it.</h2>
+          <p>The two biggest questions CPAs always have. Answered directly.</p>
+        </div>
+        <div class="trust-points">
+          <div class="trust-point rr d1">
+            <div class="tp-icon">🎯</div>
+            <div><div class="tp-ttl">Nothing goes live without your approval</div><div class="tp-body">Every single post comes to you first. If the tone, angle, or topic isn't right — it gets revised. The first two weeks calibrate your voice precisely. After that, revisions become rare.</div></div>
+          </div>
+          <div class="trust-point rr d2">
+            <div class="tp-icon">📊</div>
+            <div><div class="tp-ttl">You see exactly what LinkedIn produces</div><div class="tp-body">Monthly report with real numbers — impressions, reach, follower growth, profile views. No vanity metrics. Clear attribution of what's driving interest in your practice.</div></div>
+          </div>
+          <div class="trust-point rr d3">
+            <div class="tp-icon">🔒</div>
+            <div><div class="tp-ttl">Your niche is protected</div><div class="tp-body">I take one client per specialty per market. While you're engaged, no competitor gets the same positioning strategy. This is not a template service.</div></div>
+          </div>
+          <div class="trust-point rr d4">
+            <div class="tp-icon">🏃</div>
+            <div><div class="tp-ttl">Can upgrade or adjust anytime</div><div class="tp-body">Start on Starter, move to Authority when inbound starts. Tiers can be adjusted at any billing cycle based on what you're seeing and what you need.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rr d2">
+        <div class="roi-calc">
+          <span class="roi-calc-lbl">Simple ROI Calculator</span>
+          <h3>One new client<br>changes the math.</h3>
+          <p>CPAs underestimate the value of a single new mid-market client from LinkedIn. Here's a conservative look:</p>
+          <div class="roi-row"><span class="roi-row-l">Average new client value (annual)</span><span class="roi-row-r">$15,000</span></div>
+          <div class="roi-row"><span class="roi-row-l">Expected new clients in 6 months</span><span class="roi-row-r">1–3</span></div>
+          <div class="roi-row"><span class="roi-row-l">Authority plan · 6 months</span><span class="roi-row-r">$10,200</span></div>
+          <div class="roi-row"><span class="roi-row-l">Revenue from 1 new client</span><span class="roi-row-r">$15,000</span></div>
+          <div class="roi-total">
+            <span class="roi-total-l">Conservative ROI on 1 client</span>
+            <span class="roi-total-r">+$4,800</span>
+          </div>
+          <div class="roi-note">This assumes the most conservative outcome — 1 new client at below-average value. High-value CPAs routinely land clients worth $30,000–$80,000+ annually from LinkedIn alone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     07 · PRICING
+══════════════════════════════════ -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">Investment</span>
+      <h2>Four tiers.<br><span class="dim">One mission.</span></h2>
+      <p>Commit longer, save more. The savings on a 12-month term are meaningful enough to move the decision.</p>
+    </div>
+    <div class="term-toggle rr d1">
+      <button class="tt-btn on" onclick="setTerm('monthly',this)">Monthly</button>
+      <button class="tt-btn" onclick="setTerm('3mo',this)">3 Months · –10%</button>
+      <button class="tt-btn" onclick="setTerm('6mo',this)">6 Months · –15%</button>
+      <button class="tt-btn" onclick="setTerm('12mo',this)">12 Months · –20%</button>
+    </div>
+    <div class="pkg-grid rr d2">
+
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 01</div>
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-tagline">Consistent presence, minimal involvement</div>
+        <div class="pkg-price"><sup>$</sup><span class="pnum" data-monthly="1,000" data-3mo="900" data-6mo="850" data-12mo="800">1,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="ps1">—</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>8 posts / month</li>
+          <li>Full profile overhaul</li>
+          <li>Headline & banner rewrite</li>
+          <li>Monthly strategy call</li>
+          <li>Basic analytics report</li>
+        </ul>
+        <a href="#close" class="pkg-cta">Select Starter</a>
+        <div class="pkg-micronote" id="pn1">3-month minimum recommended</div>
+      </div>
+
+      <div class="pkg-card pop">
+        <div class="pop-badge">Most Popular</div>
+        <div class="pkg-tier">Tier 02</div>
+        <div class="pkg-name">Authority</div>
+        <div class="pkg-tagline">Serious inbound from real positioning</div>
+        <div class="pkg-price"><sup>$</sup><span class="pnum" data-monthly="2,000" data-3mo="1,800" data-6mo="1,700" data-12mo="1,600">2,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="ps2">—</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Starter</li>
+          <li>16 posts / month</li>
+          <li>Engagement management</li>
+          <li>ICP-targeted commenting</li>
+          <li>Weekly strategy call</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#close" class="pkg-cta">Select Authority</a>
+        <div class="pkg-micronote" id="pn2">3-month minimum recommended</div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 03</div>
+        <div class="pkg-name">Rainmaker</div>
+        <div class="pkg-tagline">Content + outbound. Clients and speaking.</div>
+        <div class="pkg-price"><sup>$</sup><span class="pnum" data-monthly="3,500" data-3mo="3,150" data-6mo="2,975" data-12mo="2,800">3,500</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="ps3">—</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Authority</li>
+          <li>20 posts / month</li>
+          <li>DM outreach system</li>
+          <li>Lead pipeline reporting</li>
+          <li>Newsletter ghostwriting</li>
+          <li>Speaking pitch prep</li>
+          <li>Priority turnaround</li>
+        </ul>
+        <a href="#close" class="pkg-cta">Select Rainmaker</a>
+        <div class="pkg-micronote" id="pn3">3-month minimum recommended</div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 04</div>
+        <div class="pkg-name">Empire</div>
+        <div class="pkg-tagline">Full brand management. National reach.</div>
+        <div class="pkg-price"><sup>$</sup><span class="pnum" data-monthly="6,000" data-3mo="5,400" data-6mo="5,100" data-12mo="4,800">6,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="ps4">—</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Rainmaker</li>
+          <li>Podcast & media pitching</li>
+          <li>LinkedIn + newsletter managed</li>
+          <li>Dedicated strategist</li>
+          <li>Monthly ROI attribution</li>
+          <li>Quarterly brand audit</li>
+        </ul>
+        <a href="#close" class="pkg-cta">Select Empire</a>
+        <div class="pkg-micronote" id="pn4">3-month minimum recommended</div>
+      </div>
+
+    </div>
+    <div class="price-footnotes rr d3">
+      <div class="pf">Nothing published without your approval</div>
+      <div class="pf">One client per niche per market</div>
+      <div class="pf">Upgrade tiers anytime</div>
+      <div class="pf">3-month minimum on all plans</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     08 · COMPARISON
+══════════════════════════════════ -->
+<section id="compare">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">Feature Breakdown</span>
+      <h2>What each tier<br><span class="dim">actually includes.</span></h2>
+    </div>
+    <div class="ct rr d1">
+      <div class="ct-head">
+        <div class="ct-hc">Feature</div>
+        <div class="ct-hc">Starter</div>
+        <div class="ct-hc hl">Authority</div>
+        <div class="ct-hc">Rainmaker</div>
+        <div class="ct-hc">Empire</div>
+      </div>
+      <div class="ct-row cat"><div class="ct-cell">Content</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Posts per month</div><div class="ct-cell v">8</div><div class="ct-cell v">16</div><div class="ct-cell v">20</div><div class="ct-cell v">20+</div></div>
+      <div class="ct-row"><div class="ct-cell">Profile overhaul</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Headline & banner rewrite</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Newsletter ghostwriting</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat"><div class="ct-cell">Calls & Strategy</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Strategy calls</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Weekly</div><div class="ct-cell v">Weekly</div><div class="ct-cell v">Weekly</div></div>
+      <div class="ct-row"><div class="ct-cell">Dedicated strategist</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat"><div class="ct-cell">Outreach & Growth</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">ICP-targeted commenting</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">DM outreach system</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Lead pipeline reporting</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Podcast & media pitching</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Speaking pitch prep</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat"><div class="ct-cell">Reporting</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Analytics report</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div></div>
+      <div class="ct-row"><div class="ct-cell">Monthly ROI attribution</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Quarterly brand audit</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════
+     09 · OBJECTIONS
+══════════════════════════════════ -->
+<section id="objections">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">Handle Every Objection</span>
+      <h2>Questions CPAs<br><span class="dim">always ask.</span></h2>
+      <p>Straight answers — for trust, credibility, pricing, and ROI. The four objections that come up on every call.</p>
+    </div>
+    <div class="obj-grid">
+
+      <div class="obj-card open rr d1">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge">Trust</span><span class="obj-q-text">"How do I know you actually understand accounting?"</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          I'm a CA Finalist with 4 years working in a US-focused KPO firm handling actual US accounting clients. I understand tax advisory, bookkeeping, CFO services, and audit — not from a textbook, but from doing the work alongside CPAs. <strong>Your content will never read like a marketer Googled "CPA tips."</strong> Ask me anything technical — depreciation schedules, 1031 exchanges, quarterly estimates — I'll answer. That's the credibility gap I fill.
+          <div class="highlight">The accounting background is what makes every post sound like it came from a CPA — not from a ghostwriter.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rr d2">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge">Trust</span><span class="obj-q-text">"I've tried LinkedIn before and it didn't work."</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          The reason LinkedIn doesn't work for most CPAs is approach — not the platform. Generic posts, no ICP targeting, inconsistent publishing, a profile that was never optimised. What I do is structurally different: <strong>every post has a goal, every comment has a target, and every month has a measurable output.</strong> The system is what they were missing — not the effort.
+          <div class="highlight">LinkedIn that doesn't work is LinkedIn without strategy. This is the strategy.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rr d3">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge price">Price</span><span class="obj-q-text">"This is expensive. What's the actual ROI?"</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          Let's do the math. One new mid-market client from LinkedIn is typically worth $10,000–$50,000+ annually. <strong>If this system produces one client in 3–6 months — which is a conservative outcome — the ROI is a multiple, not a margin.</strong> You're not spending on ads with uncertain reach. You're building permanent authority that keeps working long after the investment. Every post published today is an asset that works for years.
+          <div class="highlight">The question isn't "can I afford this?" — it's "what does staying invisible cost me every month?"</div>
+        </div>
+      </div>
+
+      <div class="obj-card rr d4">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge price">ROI</span><span class="obj-q-text">"Can I just do this myself?"</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          Absolutely — and most CPAs intend to. The question is: how's that been going? The challenge isn't knowledge, it's capacity and consistency. <strong>LinkedIn rewards consistency above everything else — and consistency is the first thing that slips when you're billing hours.</strong> Your time is worth more doing work that only you can do. Writing LinkedIn posts isn't in that category.
+          <div class="highlight">One new client from this system pays for 1–2 years of the service. That's the leverage.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rr d5">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge">Trust</span><span class="obj-q-text">"What if I don't like the content?"</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          Nothing goes live without your approval. Every post comes to you first — before it's scheduled. If you want changes to tone, topic, angle, or phrasing, I revise until it's right. <strong>The first two weeks are a calibration period where I dial in your voice exactly.</strong> After that, most clients rarely change anything. Your audience will never know someone else wrote it.
+          <div class="highlight">Unlimited revisions until you're happy. Always. Every post.</div>
+        </div>
+      </div>
+
+      <div class="obj-card rr d6">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <div class="obj-q-l"><span class="obj-q-badge">Stall</span><span class="obj-q-text">"I need to think about it / talk to my partner."</span></div>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          Completely reasonable. Two things worth considering before that conversation: <strong>spots per niche are limited — I won't take a competing CPA while you're evaluating</strong>, but that window doesn't stay open indefinitely. And the cost of staying invisible isn't zero — every month without LinkedIn is a month a competitor builds the authority you'll have to overcome later. What specific question can I help you answer right now?
+          <div class="highlight">The slot in your niche is being held while we talk. It won't be held indefinitely.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     10 · WHY EXCLUSIVE
+══════════════════════════════════ -->
+<section id="exclusive">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl" style="color:#5b84e8;">Scarcity & First-Mover</span>
+      <h2 style="color:var(--white);">Why spots are<br><span style="color:rgba(255,255,255,0.3);font-weight:300;">genuinely limited.</span></h2>
+      <p style="color:rgba(255,255,255,0.45);">This isn't a sales tactic. It's the structural reality of how this service works.</p>
+    </div>
+    <div class="excl-grid">
+      <div class="excl-card rr d1">
+        <span class="excl-ico">🔒</span>
+        <div class="excl-ttl">One niche per market</div>
+        <div class="excl-body">I don't take two CPAs with the same specialty in the same geography. Your positioning — and the strategy behind it — is protected for the length of your engagement.</div>
+      </div>
+      <div class="excl-card rr d2">
+        <span class="excl-ico">⏱️</span>
+        <div class="excl-ttl">Capacity is deliberately capped</div>
+        <div class="excl-body">High-quality ghostwriting, engagement management, and weekly strategy calls require real attention. I cap total clients to protect output quality — this is not a template-and-automate service.</div>
+      </div>
+      <div class="excl-card rr d3">
+        <span class="excl-ico">📈</span>
+        <div class="excl-ttl">First-mover advantage is real</div>
+        <div class="excl-body">In most CPA niches, nobody owns LinkedIn yet. The first person to build authority there becomes very difficult to displace. That window is open right now — but it closes every week someone else claims the niche.</div>
+      </div>
+    </div>
+    <div class="excl-banner rr d2">
+      <div class="excl-big">90<span> days.</span></div>
+      <div class="excl-text">That's how long it takes to go from invisible to the CPA that CFOs and business owners in your niche are already familiar with before they ever reach out. <strong>The CPAs winning on LinkedIn in 2026 started building in 2025.</strong> The ones who start now are still early — but that window narrows every week.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     11 · CLOSE
+══════════════════════════════════ -->
+<section id="close">
+  <div class="wrap">
+    <div class="sh-block rr">
+      <span class="lbl">Let's Close</span>
+      <h2>Three steps to<br><span class="dim">going live.</span></h2>
+      <p>Simple, fast, no surprises. Here's exactly what happens after you say yes.</p>
+    </div>
+    <div class="close-grid">
+      <div>
+        <div class="next-steps">
+          <div class="ns rr d1">
+            <div class="ns-num">1</div>
+            <div><div class="ns-ttl">Agreement & Invoice · 24 Hours</div><div class="ns-desc">Simple one-page agreement sent same day. First month (or full term) invoiced via Stripe or wire. Takes 10 minutes to complete.</div></div>
+          </div>
+          <div class="ns rr d2">
+            <div class="ns-num">2</div>
+            <div><div class="ns-ttl">Onboarding Call · 60 Min · Within 48 Hours</div><div class="ns-desc">One deep-dive session. I learn your niche, voice, ideal client, and goals. This is the only significant time ask — ever.</div></div>
+          </div>
+          <div class="ns rr d3">
+            <div class="ns-num">3</div>
+            <div><div class="ns-ttl">Profile Live · Within 7 Days</div><div class="ns-desc">Optimised profile published. Content calendar built. First posts scheduled. You'll see your transformed LinkedIn within one week of our call.</div></div>
+          </div>
+        </div>
+        <div class="tier-recap rr d4">
+          <div class="tier-recap-lbl">Which tier are we starting with?</div>
+          <div class="tier-recap-row"><strong>Starter · $1,000/mo</strong> — Consistent presence, minimal involvement</div>
+          <div class="tier-recap-row"><strong>Authority · $2,000/mo</strong> — Serious inbound positioning. Most popular.</div>
+          <div class="tier-recap-row"><strong>Rainmaker · $3,500/mo</strong> — Clients + speaking opportunities</div>
+          <div class="tier-recap-row"><strong>Empire · $6,000/mo</strong> — Full brand management, national reputation</div>
+        </div>
+      </div>
+      <div class="rr d2">
+        <div class="close-card">
+          <h3>Ready to become<br>the CPA clients <em>find?</em></h3>
+          <p>Book a follow-up or lock in your spot right now. No obligation until the agreement is signed.</p>
+          <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="close-btn" target="_blank">Book Your Strategy Call →</a>
+          <div class="close-note">Free · 20 minutes · No pressure</div>
+          <div class="close-promises">
+            <div class="cp"><div class="cp-icon">🔒</div><div class="cp-text"><strong>Nothing goes live without your approval.</strong> Every post reviewed before publishing — always.</div></div>
+            <div class="cp"><div class="cp-icon">🎯</div><div class="cp-text"><strong>One client per niche.</strong> Your positioning is protected for the full engagement.</div></div>
+            <div class="cp"><div class="cp-icon">📅</div><div class="cp-text"><strong>Profile live within 7 days</strong> of onboarding call. First posts scheduled before week 2.</div></div>
+            <div class="cp"><div class="cp-icon">📊</div><div class="cp-text"><strong>Monthly reports with real numbers.</strong> No vanity metrics. Full attribution transparency.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ── CANVAS BACKGROUND ── */
+(function(){
+  const c=document.getElementById('bgc');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=document.body.scrollHeight||window.innerHeight*5;
+  }
+  resize();
+  window.addEventListener('resize',()=>{setTimeout(resize,100);});
+
+  for(let i=0;i<40;i++){
+    pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.5+0.5,
+      vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,o:Math.random()*0.35+0.04});
+  }
+
+  let raf;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // Grid
+    ctx.strokeStyle='rgba(26,86,219,0.022)';ctx.lineWidth=1;
+    const g=90;
+    for(let x=0;x<W;x+=g){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=g){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    // Dots + lines
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(26,86,219,${p.o})`;ctx.fill();
+    });
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(26,86,219,${0.055*(1-d/140)})`;
+          ctx.lineWidth=1;
+          ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();
+        }
+      }
+    }
+    raf=requestAnimationFrame(draw);
+  }
+  draw();
+
+  // Resize canvas height after images load
+  window.addEventListener('load',resize);
+})();
+
+/* ── PROGRESS BAR ── */
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  const t=document.body.scrollHeight-window.innerHeight;
+  prog.style.transform=`scaleX(${t>0?window.scrollY/t:0})`;
+},{ passive:true });
+
+/* ── FLOATING NAV ── */
+const sections=['hero','problem','whyme','howitworks','timeline','trust','pricing','compare','objections','exclusive','close'];
+const fnavDots=document.querySelectorAll('.fnav-dot');
+let navHideTimer;
+
+function updateFloatNav(){
+  const sy=window.scrollY+window.innerHeight*0.4;
+  let cur=0;
+  sections.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.offsetTop<=sy)cur=i;
+  });
+  fnavDots.forEach((d,i)=>d.classList.toggle('active',i===cur));
+
+  // Hide near top
+  document.getElementById('floatnav').classList.toggle('hidden',window.scrollY<80);
+}
+window.addEventListener('scroll',updateFloatNav,{passive:true});
+updateFloatNav();
+
+function goTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── SCROLL REVEAL ── */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*50);
+  });
+},{threshold:0.07});
+document.querySelectorAll('.rr,.rl,.rs').forEach(el=>revObs.observe(el));
+
+/* ── CARD STAGGER ON SECTION ENTRY ── */
+const secObs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const cards=entry.target.querySelectorAll(
+      '.pain-card,.cred-item,.trust-point,.step,.tl-col,.pkg-card,.excl-card,.ns,.ct-row,.obj-card'
+    );
+    cards.forEach((c,i)=>{
+      if(c.dataset.animated)return;
+      c.dataset.animated='1';
+      c.style.opacity='0';c.style.transform='translateY(22px)';
+      setTimeout(()=>{
+        c.style.transition=`opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${i*55}ms,transform 0.6s cubic-bezier(0.22,1,0.36,1) ${i*55}ms`;
+        c.style.opacity='1';c.style.transform='none';
+      },120);
+    });
+  });
+},{threshold:0.06});
+document.querySelectorAll('section').forEach(s=>secObs.observe(s));
+
+/* ── COUNT UP ── */
+function countUp(el){
+  if(el.dataset.done)return;el.dataset.done='1';
+  const target=parseFloat(el.dataset.target);
+  const div=parseFloat(el.dataset.div)||1;
+  const suf=el.dataset.suf||'';
+  const dur=2000;const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-t,3);
+    const v=target*ease/div;
+    el.textContent=(div>1?v.toFixed(1):Math.round(v))+suf;
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const cuObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)countUp(e.target);});
+},{threshold:0.5});
+document.querySelectorAll('.countup').forEach(el=>cuObs.observe(el));
+
+/* ── OBJECTION ACCORDION ── */
+function toggleObj(btn){
+  const card=btn.closest('.obj-card');
+  const open=card.classList.contains('open');
+  document.querySelectorAll('.obj-card.open').forEach(c=>c.classList.remove('open'));
+  if(!open)card.classList.add('open');
+}
+
+/* ── PRICING TOGGLE ── */
+const SAVES={
+  '3mo':{1:'Save $300',2:'Save $600',3:'Save $1,050',4:'Save $1,800'},
+  '6mo':{1:'Save $900',2:'Save $1,800',3:'Save $3,150',4:'Save $5,400'},
+  '12mo':{1:'Save $1,200',2:'Save $4,800',3:'Save $8,400',4:'Save $14,400'}
+};
+const NOTES={
+  '3mo':{1:'$2,700 total · 3-month term',2:'$5,400 total · 3-month term',3:'$9,450 total · 3-month term',4:'$16,200 total · 3-month term'},
+  '6mo':{1:'$5,100 total · 6-month term',2:'$10,200 total · 6-month term',3:'$17,850 total · 6-month term',4:'$30,600 total · 6-month term'},
+  '12mo':{1:'$9,600 total · 12-month term',2:'$19,200 total · 12-month term',3:'$33,600 total · 12-month term',4:'$57,600 total · 12-month term'}
+};
+
+function setTerm(term,btn){
+  document.querySelectorAll('.tt-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pnum').forEach(el=>{
+    const next=el.dataset[term]||el.dataset.monthly;
+    // flip animation
+    el.style.transition='transform 0.2s ease,opacity 0.2s ease';
+    el.style.transform='translateY(-12px)';el.style.opacity='0';
+    setTimeout(()=>{
+      el.textContent=next;
+      el.style.transform='translateY(12px)';
+      setTimeout(()=>{
+        el.style.transition='transform 0.25s cubic-bezier(0.34,1.56,0.64,1),opacity 0.25s ease';
+        el.style.transform='none';el.style.opacity='1';
+      },20);
+    },200);
+  });
+  [1,2,3,4].forEach(i=>{
+    const s=document.getElementById('ps'+i);
+    const n=document.getElementById('pn'+i);
+    if(term==='monthly'){s.style.visibility='hidden';n.textContent='3-month minimum recommended';}
+    else{s.style.visibility='visible';s.textContent=SAVES[term][i];n.textContent=NOTES[term][i];}
+  });
+}
+
+/* ── PROOF CARD 3D TILT ── */
+document.querySelectorAll('.proof-panel,.roi-calc,.hero-card,.close-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*5}deg) translateZ(6px)`;
+    card.style.transition='transform 0.1s ease';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform 0.5s cubic-bezier(0.22,1,0.36,1)';
+    card.style.transform='';
+  });
+});
+
+/* ── RESIZE CANVAS ON FULL LOAD ── */
+window.addEventListener('load',()=>{
+  const c=document.getElementById('bgc');
+  c.width=window.innerWidth;
+  c.height=document.body.scrollHeight;
+});
+</script>
+</body>
+</html>
