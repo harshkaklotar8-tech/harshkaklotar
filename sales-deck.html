@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Kaklotar — Sales Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --white:#ffffff;--off:#f7f7f5;--ink:#0f0f0f;--ink2:#3a3a3a;--ink3:#767676;
+  --line:#e8e8e4;--accent:#1a56db;--accent2:#0e3fa8;--tag-bg:#eef3ff;
+  --nav-w:260px;--ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;height:100%;}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:'Sora',sans-serif;font-weight:300;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  cursor:default;
+}
+a,button{cursor:default;}
+
+/* ══════════════════════════════════
+   ANIMATED BACKGROUND CANVAS
+══════════════════════════════════ */
+#bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;opacity:0.45;
+}
+
+/* ══════════════════════════════════
+   SIDE NAV
+══════════════════════════════════ */
+#side-nav{
+  position:fixed;left:0;top:0;bottom:0;
+  width:var(--nav-w);z-index:50;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  padding:32px 0;
+  transition:transform 0.4s var(--ease);
+}
+.nav-logo{
+  font-size:14px;font-weight:700;color:var(--ink);
+  letter-spacing:-0.02em;padding:0 28px 28px;
+  border-bottom:1px solid var(--line);
+}
+.nav-logo span{color:var(--accent);}
+.nav-sub{font-size:10px;font-weight:400;color:var(--ink3);letter-spacing:0.04em;text-transform:uppercase;margin-top:3px;}
+
+.nav-sections{flex:1;overflow-y:auto;padding:20px 0;}
+.nav-section-group{margin-bottom:4px;}
+.nav-group-label{
+  font-size:9px;font-weight:600;color:var(--ink3);letter-spacing:0.1em;
+  text-transform:uppercase;padding:14px 28px 6px;
+}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 28px;font-size:12.5px;font-weight:400;color:var(--ink2);
+  border:none;background:none;width:100%;text-align:left;
+  transition:all 0.2s;position:relative;letter-spacing:-0.01em;
+  border-left:2px solid transparent;
+}
+.nav-item::before{
+  content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;
+  background:var(--accent);border-radius:0 2px 2px 0;
+  opacity:0;transition:opacity 0.2s;
+}
+.nav-item:hover{color:var(--ink);background:var(--off);}
+.nav-item.active{color:var(--accent);font-weight:600;background:var(--tag-bg);}
+.nav-item.active::before{opacity:1;}
+.nav-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--line);flex-shrink:0;
+  transition:background 0.2s;
+}
+.nav-item.active .nav-dot,.nav-item:hover .nav-dot{background:var(--accent);}
+.nav-item-num{
+  font-size:10px;font-weight:600;color:var(--ink3);
+  min-width:16px;text-align:right;
+}
+.nav-item.active .nav-item-num{color:var(--accent);}
+
+.nav-cta{
+  padding:20px 28px 0;border-top:1px solid var(--line);margin-top:auto;
+}
+.nav-cta-btn{
+  display:block;text-align:center;background:var(--ink);color:var(--white);
+  font-size:12px;font-weight:600;padding:12px;border-radius:100px;
+  text-decoration:none;letter-spacing:-0.01em;
+  transition:background 0.2s,transform 0.15s;
+  border:none;width:100%;
+}
+.nav-cta-btn:hover{background:var(--accent);transform:translateY(-1px);}
+.nav-progress{
+  height:2px;background:var(--line);margin:16px 28px 0;border-radius:2px;
+}
+.nav-progress-fill{
+  height:100%;background:var(--accent);border-radius:2px;
+  transition:width 0.3s var(--ease);width:0%;
+}
+
+/* ══════════════════════════════════
+   MAIN CONTENT
+══════════════════════════════════ */
+#main{margin-left:var(--nav-w);position:relative;z-index:1;}
+
+/* ══════════════════════════════════
+   SECTIONS
+══════════════════════════════════ */
+.slide{
+  min-height:100vh;padding:80px 72px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.slide+.slide{border-top:1px solid var(--line);}
+
+/* Slide number watermark */
+.slide-num{
+  position:absolute;right:72px;bottom:48px;
+  font-size:120px;font-weight:800;color:var(--off);
+  letter-spacing:-0.05em;line-height:1;
+  z-index:0;pointer-events:none;
+  transition:color 0.3s;
+  font-family:'Sora',sans-serif;
+}
+
+.slide-inner{position:relative;z-index:1;max-width:880px;}
+
+/* ══════════════════════════════════
+   SECTION LABELS & HEADINGS
+══════════════════════════════════ */
+.label{
+  font-size:11px;font-weight:600;color:var(--accent);
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;display:block;
+}
+.slide h1{
+  font-size:clamp(40px,5.5vw,72px);font-weight:800;
+  letter-spacing:-0.04em;line-height:1.05;color:var(--ink);margin-bottom:24px;
+}
+.slide h2{
+  font-size:clamp(28px,4vw,52px);font-weight:700;
+  letter-spacing:-0.035em;line-height:1.1;color:var(--ink);margin-bottom:20px;
+}
+.slide h3{font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px;}
+em.blue{font-style:normal;color:var(--accent);}
+em.gray{font-style:normal;color:var(--ink3);}
+.lead{font-size:18px;color:var(--ink2);line-height:1.75;font-weight:300;max-width:600px;}
+.body-text{font-size:15px;color:var(--ink2);line-height:1.75;font-weight:300;}
+
+/* ══════════════════════════════════
+   SLIDE 1 — TITLE
+══════════════════════════════════ */
+#s1{background:var(--ink);}
+#s1 .slide-num{color:#1a1a1a;}
+#s1 h1{color:var(--white);font-size:clamp(44px,6vw,80px);}
+#s1 .label{color:#5b84e8;}
+#s1 .lead{color:rgba(255,255,255,0.6);}
+#s1 .hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(26,86,219,0.25);color:#93aff5;
+  font-size:11px;font-weight:600;padding:7px 16px;
+  border-radius:100px;letter-spacing:0.04em;margin-bottom:28px;
+  border:1px solid rgba(93,148,249,0.3);
+}
+.pulse-dot{
+  width:7px;height:7px;border-radius:50%;background:#5b93f5;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+
+.stat-row{
+  display:flex;gap:40px;margin-top:48px;flex-wrap:wrap;
+}
+.s1-stat{border-left:2px solid rgba(255,255,255,0.1);padding-left:20px;}
+.s1-stat-num{
+  font-size:36px;font-weight:800;color:var(--white);
+  letter-spacing:-0.04em;line-height:1;display:block;
+}
+.s1-stat-lbl{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;display:block;}
+
+/* ══════════════════════════════════
+   SLIDE 2 — THE PROBLEM
+══════════════════════════════════ */
+#s2{background:var(--white);}
+.pain-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;
+}
+.pain-card{
+  padding:28px 24px;border:1px solid var(--line);border-radius:14px;
+  background:var(--white);position:relative;overflow:hidden;
+  transition:transform 0.35s var(--ease),box-shadow 0.35s var(--ease),border-color 0.35s;
+}
+.pain-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,86,219,0.03),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.pain-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.08);
+  border-color:#c5d3f5;
+}
+.pain-card:hover::before{opacity:1;}
+.pain-icon{font-size:28px;margin-bottom:16px;display:block;}
+.pain-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-0.01em;}
+.pain-body{font-size:13px;color:var(--ink3);line-height:1.7;}
+
+/* ══════════════════════════════════
+   SLIDE 3 — WHO I AM / CREDIBILITY
+══════════════════════════════════ */
+#s3{background:var(--off);}
+.cred-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:16px;}
+.cred-facts{display:flex;flex-direction:column;gap:16px;}
+.cred-fact{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--white);
+  transition:transform 0.3s var(--ease),box-shadow 0.3s;
+}
+.cred-fact:hover{transform:translateX(6px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.cred-fact-icon{
+  width:36px;height:36px;border-radius:9px;background:var(--tag-bg);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+}
+.cred-fact-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.cred-fact-body{font-size:12px;color:var(--ink3);line-height:1.6;}
+
+.proof-card{
+  background:var(--ink);border-radius:20px;padding:36px;color:var(--white);
+  position:relative;overflow:hidden;
+}
+.proof-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,86,219,0.4),transparent 70%);
+}
+.proof-card-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;}
+.proof-stat{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.proof-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.proof-stat-num{font-size:38px;font-weight:800;color:var(--white);letter-spacing:-0.04em;line-height:1;}
+.proof-stat-lbl{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;}
+.proof-quote{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:14px;color:rgba(255,255,255,0.7);
+  line-height:1.7;margin-top:24px;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* ══════════════════════════════════
+   SLIDE 4 — HOW IT WORKS
+══════════════════════════════════ */
+#s4{background:var(--white);}
+.process-steps{display:flex;flex-direction:column;gap:0;margin-top:36px;position:relative;}
+.process-steps::before{
+  content:'';position:absolute;left:23px;top:0;bottom:0;width:1px;background:var(--line);
+}
+.process-step{
+  display:flex;gap:28px;align-items:flex-start;
+  padding:28px 0;border-bottom:1px solid var(--line);
+  position:relative;
+  transition:transform 0.3s var(--ease);
+}
+.process-step:last-child{border-bottom:none;}
+.process-step:hover{transform:translateX(8px);}
+.step-num{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--white);border:2px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:var(--ink3);
+  flex-shrink:0;position:relative;z-index:1;
+  transition:all 0.3s;
+}
+.process-step:hover .step-num{
+  background:var(--accent);border-color:var(--accent);color:var(--white);
+  box-shadow:0 0 0 6px rgba(26,86,219,0.1);
+}
+.step-content{flex:1;}
+.step-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-0.01em;}
+.step-desc{font-size:13px;color:var(--ink3);line-height:1.7;}
+.step-tag{
+  display:inline-block;font-size:10px;font-weight:600;
+  background:var(--tag-bg);color:var(--accent);
+  padding:3px 10px;border-radius:100px;letter-spacing:0.03em;margin-top:8px;
+}
+
+/* ══════════════════════════════════
+   SLIDE 5 — WHAT'S INCLUDED
+══════════════════════════════════ */
+#s5{background:var(--off);}
+.deliverables-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:32px;
+}
+.del-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:18px 20px;border:1px solid var(--line);border-radius:12px;
+  background:var(--white);
+  transition:border-color 0.25s,transform 0.25s var(--ease),box-shadow 0.25s;
+}
+.del-item:hover{
+  border-color:var(--accent);transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(26,86,219,0.08);
+}
+.del-check{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--tag-bg);display:flex;align-items:center;
+  justify-content:center;font-size:11px;color:var(--accent);
+  font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.del-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.del-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+
+/* ══════════════════════════════════
+   SLIDE 6 — TIMELINE
+══════════════════════════════════ */
+#s6{background:var(--white);}
+.timeline-horiz{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  margin-top:36px;
+}
+.tl-col{
+  padding:36px 28px;border-right:1px solid var(--line);
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.tl-col:last-child{border-right:none;}
+.tl-col:hover{background:var(--off);}
+.tl-col::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--line);transition:background 0.3s;
+}
+.tl-col:hover::after{background:var(--accent);}
+.tl-month-label{
+  font-size:10px;font-weight:600;color:var(--ink3);
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;
+}
+.tl-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.02em;}
+.tl-subtitle{font-size:12px;color:var(--ink3);font-family:'Lora',serif;font-style:italic;margin-bottom:20px;}
+.tl-items{list-style:none;}
+.tl-items li{
+  font-size:12.5px;color:var(--ink2);padding:7px 0;
+  border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start;line-height:1.5;
+}
+.tl-items li:last-child{border-bottom:none;}
+.tl-items li::before{content:'→';color:var(--accent);font-weight:600;font-size:11px;flex-shrink:0;margin-top:1px;}
+
+/* ══════════════════════════════════
+   SLIDE 7 — PACKAGES
+══════════════════════════════════ */
+#s7{background:var(--off);}
+.pkg-toggle{
+  display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap;
+}
+.pkg-toggle-btn{
+  font-size:12px;font-weight:500;padding:8px 18px;
+  border-radius:100px;border:1px solid var(--line);
+  background:var(--white);color:var(--ink3);
+  transition:all 0.2s;letter-spacing:-0.01em;
+}
+.pkg-toggle-btn.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.pkg-toggle-btn:hover:not(.active){border-color:var(--ink2);color:var(--ink);}
+
+.pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.pkg-card{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:28px 22px;display:flex;flex-direction:column;
+  transition:all 0.35s var(--ease);position:relative;overflow:hidden;
+}
+.pkg-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(26,86,219,0.04),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.pkg-card:hover{
+  transform:translateY(-8px);box-shadow:0 24px 64px rgba(0,0,0,0.1);
+  border-color:#b8c9f5;
+}
+.pkg-card:hover::before{opacity:1;}
+.pkg-card.featured{border-color:var(--accent);background:#fafbff;}
+.featured-badge{
+  position:absolute;top:-1px;right:20px;
+  background:var(--accent);color:var(--white);
+  font-size:10px;font-weight:700;padding:4px 12px;
+  border-radius:0 0 8px 8px;letter-spacing:0.04em;text-transform:uppercase;
+}
+.pkg-tier{font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;}
+.pkg-name{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:3px;}
+.pkg-tagline{font-size:12px;color:var(--ink3);font-family:'Lora',serif;font-style:italic;margin-bottom:20px;line-height:1.5;}
+.pkg-price{font-size:34px;font-weight:800;color:var(--ink);letter-spacing:-0.04em;line-height:1;}
+.pkg-price sup{font-size:17px;vertical-align:super;font-weight:600;}
+.pkg-price-lbl{font-size:11px;color:var(--ink3);margin-top:3px;display:block;}
+.pkg-save{
+  display:inline-block;font-size:10px;font-weight:700;color:var(--accent);
+  background:var(--tag-bg);padding:3px 9px;border-radius:100px;
+  margin-top:6px;visibility:hidden;
+}
+.pkg-sep{border:none;border-top:1px solid var(--line);margin:18px 0;}
+.pkg-feats{list-style:none;flex:1;margin-bottom:18px;}
+.pkg-feats li{
+  font-size:12px;color:var(--ink2);padding:6px 0;
+  border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:flex-start;line-height:1.5;
+}
+.pkg-feats li:last-child{border-bottom:none;}
+.pkg-feats li::before{content:'✓';color:var(--accent);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px;}
+.pkg-cta{
+  display:block;text-align:center;font-size:12px;font-weight:600;
+  padding:11px;border-radius:100px;text-decoration:none;
+  border:1px solid var(--ink);color:var(--ink);background:var(--white);
+  transition:all 0.2s;letter-spacing:-0.01em;
+}
+.pkg-cta:hover{background:var(--ink);color:var(--white);}
+.pkg-card.featured .pkg-cta{background:var(--accent);color:var(--white);border-color:var(--accent);}
+.pkg-card.featured .pkg-cta:hover{background:var(--accent2);border-color:var(--accent2);}
+
+/* ══════════════════════════════════
+   SLIDE 8 — COMPARISON
+══════════════════════════════════ */
+#s8{background:var(--white);}
+.compare-table{
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin-top:32px;
+}
+.ct-head{
+  display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;
+  background:var(--off);border-bottom:1px solid var(--line);
+}
+.ct-head-cell{
+  padding:14px 18px;font-size:11px;font-weight:700;color:var(--ink);
+  letter-spacing:-0.01em;text-align:center;
+}
+.ct-head-cell:first-child{text-align:left;color:var(--ink3);font-weight:400;}
+.ct-head-cell.feat{color:var(--accent);}
+.ct-row{
+  display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;
+  border-bottom:1px solid var(--line);
+  transition:background 0.2s;
+}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:var(--off);}
+.ct-row.cat-row{background:#fafaf8;}
+.ct-row.cat-row .ct-cell{
+  font-size:9px;font-weight:700;color:var(--ink3);
+  letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;
+}
+.ct-cell{
+  padding:13px 18px;font-size:12.5px;color:var(--ink2);
+  text-align:center;display:flex;align-items:center;justify-content:center;
+  border-left:1px solid var(--line);
+}
+.ct-cell:first-child{text-align:left;justify-content:flex-start;border-left:none;color:var(--ink);}
+.ct-cell.y{color:var(--accent);font-size:15px;font-weight:700;}
+.ct-cell.n{color:#d0d0cc;font-size:15px;}
+.ct-cell.v{font-weight:700;color:var(--ink);}
+
+/* ══════════════════════════════════
+   SLIDE 9 — OBJECTION HANDLING
+══════════════════════════════════ */
+#s9{background:var(--off);}
+.obj-accordion{margin-top:32px;display:flex;flex-direction:column;gap:8px;}
+.obj-item{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  background:var(--white);
+  transition:border-color 0.25s,box-shadow 0.25s;
+}
+.obj-item.open{border-color:var(--accent);box-shadow:0 4px 20px rgba(26,86,219,0.08);}
+.obj-q{
+  width:100%;background:none;border:none;
+  padding:20px 24px;display:flex;justify-content:space-between;align-items:center;
+  gap:16px;text-align:left;
+}
+.obj-q-text{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.4;}
+.obj-icon{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink3);flex-shrink:0;
+  transition:all 0.3s var(--ease);font-weight:300;background:var(--off);
+}
+.obj-item.open .obj-icon{
+  background:var(--accent);border-color:var(--accent);color:var(--white);
+  transform:rotate(45deg);
+}
+.obj-a{
+  font-size:13.5px;color:var(--ink2);line-height:1.8;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s var(--ease),padding 0.3s;
+  padding:0 24px;
+}
+.obj-item.open .obj-a{max-height:300px;padding:0 24px 22px;}
+.obj-a strong{color:var(--ink);font-weight:600;}
+.obj-label{
+  display:inline-block;font-size:10px;font-weight:700;
+  color:var(--accent);background:var(--tag-bg);
+  padding:2px 10px;border-radius:100px;letter-spacing:0.04em;
+  margin-bottom:8px;
+}
+
+/* ══════════════════════════════════
+   SLIDE 10 — WHY EXCLUSIVE
+══════════════════════════════════ */
+#s10{background:var(--ink);}
+#s10 .slide-num{color:#1c1c1c;}
+#s10 h2{color:var(--white);}
+#s10 .label{color:#5b84e8;}
+.excl-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;
+}
+.excl-card{
+  border:1px solid rgba(255,255,255,0.08);border-radius:14px;
+  padding:28px 24px;
+  transition:border-color 0.3s,transform 0.3s var(--ease);
+}
+.excl-card:hover{border-color:rgba(26,86,219,0.5);transform:translateY(-4px);}
+.excl-icon{font-size:26px;margin-bottom:16px;display:block;}
+.excl-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em;}
+.excl-body{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.excl-statement{
+  margin-top:40px;padding:28px 32px;
+  border:1px solid rgba(255,255,255,0.08);border-radius:14px;
+  display:flex;gap:24px;align-items:center;
+}
+.excl-big{
+  font-size:52px;font-weight:800;color:var(--white);
+  letter-spacing:-0.05em;line-height:1;white-space:nowrap;flex-shrink:0;
+}
+.excl-text{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;font-weight:300;}
+.excl-text strong{color:var(--white);font-weight:600;}
+
+/* ══════════════════════════════════
+   SLIDE 11 — NEXT STEPS / CLOSE
+══════════════════════════════════ */
+#s11{background:var(--white);}
+.close-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.steps-list{margin-top:28px;display:flex;flex-direction:column;gap:4px;}
+.next-step{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:22px;border:1px solid var(--line);border-radius:12px;
+  background:var(--white);
+  transition:border-color 0.25s,transform 0.25s var(--ease),background 0.25s;
+}
+.next-step:hover{border-color:var(--accent);transform:translateX(6px);background:var(--tag-bg);}
+.next-step-num{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--tag-bg);border:1px solid rgba(26,86,219,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--accent);flex-shrink:0;
+}
+.next-step-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.next-step-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+
+.close-card{
+  background:var(--ink);border-radius:20px;padding:40px;color:var(--white);
+  position:sticky;top:32px;
+}
+.close-card h3{
+  font-size:28px;font-weight:800;letter-spacing:-0.03em;
+  color:var(--white);margin-bottom:12px;line-height:1.2;
+}
+.close-card h3 em{font-style:normal;color:#93aff5;}
+.close-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;}
+.close-cta{
+  display:block;text-align:center;
+  background:var(--white);color:var(--ink);
+  font-size:14px;font-weight:700;padding:16px;border-radius:100px;
+  text-decoration:none;letter-spacing:-0.01em;
+  transition:all 0.2s;border:none;width:100%;
+}
+.close-cta:hover{background:var(--accent);color:var(--white);}
+.close-note{font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:14px;letter-spacing:0.02em;}
+.guarantee-badge{
+  display:flex;gap:12px;align-items:center;
+  padding:16px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;margin-top:16px;
+}
+.guar-icon{font-size:22px;flex-shrink:0;}
+.guar-text{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
+.guar-text strong{color:rgba(255,255,255,0.7);}
+
+/* ══════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════ */
+
+/* Reveal on scroll */
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity 0.7s var(--ease),transform 0.7s var(--ease);
+}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:0.08s;}
+.reveal.d2{transition-delay:0.16s;}
+.reveal.d3{transition-delay:0.24s;}
+.reveal.d4{transition-delay:0.32s;}
+.reveal.d5{transition-delay:0.40s;}
+
+/* Count-up numbers */
+.countup{display:inline;}
+
+/* Floating particles on slide 1 */
+.particle{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:float linear infinite;opacity:0.12;
+}
+@keyframes float{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(-100vh) rotate(360deg);}
+}
+
+/* Shimmer on featured card */
+@keyframes shimmer{
+  0%{background-position:-200% center;}
+  100%{background-position:200% center;}
+}
+.pkg-card.featured::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.15) 50%,transparent 60%);
+  background-size:200% 100%;
+  animation:shimmer 3s ease-in-out infinite;
+  pointer-events:none;border-radius:16px;
+}
+
+/* Slide-in for nav items */
+@keyframes slideInLeft{
+  from{opacity:0;transform:translateX(-16px);}
+  to{opacity:1;transform:none;}
+}
+.nav-item{animation:slideInLeft 0.5s var(--ease) both;}
+.nav-item:nth-child(1){animation-delay:0.05s;}
+.nav-item:nth-child(2){animation-delay:0.10s;}
+.nav-item:nth-child(3){animation-delay:0.15s;}
+.nav-item:nth-child(4){animation-delay:0.20s;}
+.nav-item:nth-child(5){animation-delay:0.25s;}
+
+/* Glow on hover for dark slides */
+.excl-card,.proof-card{
+  transition:all 0.35s var(--ease);
+}
+
+/* Number ticker animation */
+@keyframes ticker{
+  0%{opacity:0;transform:translateY(8px);}
+  100%{opacity:1;transform:none;}
+}
+
+/* Mobile: hide side nav, top nav instead */
+@media(max-width:900px){
+  :root{--nav-w:0px;}
+  #side-nav{transform:translateX(-260px);}
+  #main{margin-left:0;}
+  .slide{padding:60px 24px;}
+  .slide-num{right:24px;bottom:24px;font-size:72px;}
+  .pain-grid,.cred-layout,.excl-grid,.pkg-grid,
+  .close-layout,.timeline-horiz{grid-template-columns:1fr;}
+  .pkg-grid{grid-template-columns:1fr 1fr;}
+  .stat-row{gap:24px;}
+  .ct-head,.ct-row{min-width:640px;}
+  .compare-table{overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ANIMATED BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- SIDE NAV -->
+<nav id="side-nav">
+  <div class="nav-logo">
+    Harsh<span>Kaklotar</span>
+    <div class="nav-sub">Sales Deck · CPA LinkedIn Branding</div>
+  </div>
+  <div class="nav-sections">
+
+    <div class="nav-section-group">
+      <div class="nav-group-label">Opening</div>
+      <button class="nav-item active" onclick="goTo('s1')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Introduction</span>
+        <span class="nav-item-num">01</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s2')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">The Problem</span>
+        <span class="nav-item-num">02</span>
+      </button>
+    </div>
+
+    <div class="nav-section-group">
+      <div class="nav-group-label">Credibility</div>
+      <button class="nav-item" onclick="goTo('s3')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Who I Am</span>
+        <span class="nav-item-num">03</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s4')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">How It Works</span>
+        <span class="nav-item-num">04</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s5')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">What's Included</span>
+        <span class="nav-item-num">05</span>
+      </button>
+    </div>
+
+    <div class="nav-section-group">
+      <div class="nav-group-label">Investment</div>
+      <button class="nav-item" onclick="goTo('s6')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Timeline</span>
+        <span class="nav-item-num">06</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s7')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Packages & Pricing</span>
+        <span class="nav-item-num">07</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s8')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Feature Comparison</span>
+        <span class="nav-item-num">08</span>
+      </button>
+    </div>
+
+    <div class="nav-section-group">
+      <div class="nav-group-label">Closing</div>
+      <button class="nav-item" onclick="goTo('s9')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Objections</span>
+        <span class="nav-item-num">09</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s10')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Why Exclusive</span>
+        <span class="nav-item-num">10</span>
+      </button>
+      <button class="nav-item" onclick="goTo('s11')">
+        <span class="nav-dot"></span>
+        <span style="flex:1;">Next Steps</span>
+        <span class="nav-item-num">11</span>
+      </button>
+    </div>
+
+  </div>
+  <div class="nav-cta">
+    <button class="nav-cta-btn" onclick="goTo('s11')">Jump to Close →</button>
+    <div class="nav-progress"><div class="nav-progress-fill" id="progress-fill"></div></div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+
+<!-- ── S1: INTRO ── -->
+<section class="slide" id="s1">
+  <div class="slide-num">01</div>
+  <!-- Particles -->
+  <div id="particles"></div>
+  <div class="slide-inner">
+    <div class="hero-tag reveal"><div class="pulse-dot"></div>Live Sales Call · Confidential</div>
+    <span class="label reveal d1">Harsh Kaklotar · LinkedIn Branding for US CPAs</span>
+    <h1 class="reveal d2">
+      The only LinkedIn<br>system built for<br><em class="blue">US accountants.</em>
+    </h1>
+    <p class="lead reveal d3" style="color:rgba(255,255,255,0.6);margin-top:16px;">
+      Done-for-you content, positioning, and outreach that turns your LinkedIn into a client-attracting machine — while you focus on billable work.
+    </p>
+    <div class="stat-row reveal d4">
+      <div class="s1-stat">
+        <span class="s1-stat-num countup" data-target="117420" data-prefix="" data-suffix="k" data-divide="1000">0</span>
+        <span class="s1-stat-lbl">Impressions (90 days)</span>
+      </div>
+      <div class="s1-stat">
+        <span class="s1-stat-num countup" data-target="70557" data-prefix="" data-suffix="k" data-divide="1000">0</span>
+        <span class="s1-stat-lbl">Professionals reached</span>
+      </div>
+      <div class="s1-stat">
+        <span class="s1-stat-num countup" data-target="44" data-prefix="" data-suffix="%">0</span>
+        <span class="s1-stat-lbl">Accounting-industry audience</span>
+      </div>
+      <div class="s1-stat">
+        <span class="s1-stat-num countup" data-target="95" data-prefix="" data-suffix="k+ impressions">0</span>
+        <span class="s1-stat-lbl">Best single post</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S2: THE PROBLEM ── -->
+<section class="slide" id="s2">
+  <div class="slide-num">02</div>
+  <div class="slide-inner">
+    <span class="label reveal">The Problem</span>
+    <h2 class="reveal d1">CPAs are losing clients<br>to <em class="blue">less qualified</em> competitors<br><em class="gray">with better LinkedIn.</em></h2>
+    <p class="lead reveal d2">You're more experienced. Better qualified. But they're showing up — and you're not. Here's why that's happening.</p>
+    <div class="pain-grid reveal d3">
+      <div class="pain-card">
+        <span class="pain-icon">👻</span>
+        <div class="pain-title">Invisible to the right clients</div>
+        <div class="pain-body">CFOs and business owners are searching LinkedIn before making referrals. If you're not there, you don't exist — regardless of how good you are.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">⏳</span>
+        <div class="pain-title">No time to do it consistently</div>
+        <div class="pain-body">You know you should be posting. But between tax season, client calls, and deadlines, LinkedIn is always the thing you'll "do next month."</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">📉</span>
+        <div class="pain-title">Generic content that doesn't convert</div>
+        <div class="pain-body">When you do post, it blends in. Generic tips, motivational quotes — nothing that positions you as the go-to CPA in your niche.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <div class="pain-title">Relying on referrals alone</div>
+        <div class="pain-body">Referrals are unpredictable. One bad quarter can spiral. LinkedIn creates a consistent inbound pipeline that doesn't require you to constantly ask for introductions.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🎯</span>
+        <div class="pain-title">Wrong audience, wrong positioning</div>
+        <div class="pain-body">Even CPAs who post regularly attract other CPAs — not buyers. Strategy and targeting matter more than frequency.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🔇</span>
+        <div class="pain-title">Zero voice in your niche</div>
+        <div class="pain-body">Someone in your specialty is building a national reputation right now. When the next CFO searches for your expertise, will they find you — or them?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S3: WHO I AM ── -->
+<section class="slide" id="s3">
+  <div class="slide-num">03</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">Why Me</span>
+    <h2 class="reveal d1">The rare mix of<br><em class="blue">accounting expertise</em><br><em class="gray">and LinkedIn strategy.</em></h2>
+    <div class="cred-layout reveal d2">
+      <div class="cred-facts">
+        <div class="cred-fact">
+          <div class="cred-fact-icon">📊</div>
+          <div>
+            <div class="cred-fact-title">CA Finalist with US Accounting Background</div>
+            <div class="cred-fact-body">4 years working in a US-focused KPO firm handling real US accounting clients. I understand tax advisory, bookkeeping, CFO services — not from a textbook, but from doing the work.</div>
+          </div>
+        </div>
+        <div class="cred-fact">
+          <div class="cred-fact-icon">✍️</div>
+          <div>
+            <div class="cred-fact-title">I Write Like You Think</div>
+            <div class="cred-fact-body">Your content won't sound like it was written by a marketer who Googled "CPA." It'll sound exactly like you — because I understand the language your ideal clients speak.</div>
+          </div>
+        </div>
+        <div class="cred-fact">
+          <div class="cred-fact-icon">🔒</div>
+          <div>
+            <div class="cred-fact-title">One Client Per Niche</div>
+            <div class="cred-fact-body">I never work with two CPAs in the same specialty and market simultaneously. Your positioning is protected — competitors can't buy the same strategy from me.</div>
+          </div>
+        </div>
+        <div class="cred-fact">
+          <div class="cred-fact-icon">📈</div>
+          <div>
+            <div class="cred-fact-title">Proven on My Own Profile First</div>
+            <div class="cred-fact-body">Everything I recommend, I've tested on my own LinkedIn. The stats you saw on slide 01 are real — verified analytics from my own account, not a client claim.</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-card-label">My LinkedIn · Verified Analytics · 90 Days</div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">117,420</div>
+          <div class="proof-stat-lbl">Total impressions</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">70,557</div>
+          <div class="proof-stat-lbl">Unique members reached</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">95,136</div>
+          <div class="proof-stat-lbl">Best single post impressions</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-stat-num">44.5%</div>
+          <div class="proof-stat-lbl">Audience in accounting industry</div>
+        </div>
+        <div class="proof-quote">
+          "I built this reach in under 30 days of consistent posting — with a profile in the same niche as the CPAs I serve."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S4: HOW IT WORKS ── -->
+<section class="slide" id="s4">
+  <div class="slide-num">04</div>
+  <div class="slide-inner">
+    <span class="label reveal">The System</span>
+    <h2 class="reveal d1">Done-for-you means<br><em class="blue">actually done for you.</em></h2>
+    <p class="lead reveal d2">15–20 minutes a week from you. Everything else is handled.</p>
+    <div class="process-steps reveal d3">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Onboarding Call (60 min, once)</div>
+          <div class="step-desc">I learn your niche, ideal client profile, communication style, past experiences, and content preferences. This single call is the foundation of everything. We never have this kind of deep-dive again unless you want to.</div>
+          <div class="step-tag">Your time: 60 minutes, one time</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Profile Overhaul (Week 1)</div>
+          <div class="step-desc">Headline, banner, About section, Featured section, Skills — everything rewritten to attract your ideal client and rank in LinkedIn search for the right keywords. Most CPAs have never done this properly.</div>
+          <div class="step-tag">No input needed from you</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Content Calendar Built</div>
+          <div class="step-desc">A month of posts planned around your niche, peak engagement windows, trending topics in accounting, and your unique angles. Every post has a specific goal — reach, trust, or conversion.</div>
+          <div class="step-tag">You review, approve, done</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Publishing + Engagement Management</div>
+          <div class="step-desc">Posts go live at optimal times. I monitor comments and handle engagement — liking, replying, tagging — to keep the algorithm happy and the conversation going.</div>
+          <div class="step-tag">Zero effort from you</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Strategy Calls (Weekly or Monthly)</div>
+          <div class="step-desc">Depending on your tier, we meet regularly to review what's working, adjust the strategy, and update your content based on what's happening in your practice and the accounting world.</div>
+          <div class="step-tag">Your input shapes the direction</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Monthly Performance Report</div>
+          <div class="step-desc">A clear, readable report — impressions, reach, follower growth, profile views, engagement rate, and what's driving inbound. No vanity metrics. You see exactly what LinkedIn is producing for you.</div>
+          <div class="step-tag">Full transparency, every month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S5: WHAT'S INCLUDED ── -->
+<section class="slide" id="s5">
+  <div class="slide-num">05</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">Deliverables</span>
+    <h2 class="reveal d1">Everything you need.<br><em class="gray">Nothing you don't.</em></h2>
+    <p class="lead reveal d2">Every engagement — regardless of tier — starts with these foundations. Higher tiers layer on outreach, media, and pipeline systems.</p>
+    <div class="deliverables-grid reveal d3">
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Full Profile Overhaul</div>
+          <div class="del-desc">Headline, About, banner, featured section — rewritten to rank and convert, not just look good.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Ghost-Written Content</div>
+          <div class="del-desc">8–20 posts per month, written in your voice, aligned to your niche, reviewed by you before publishing.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Engagement Management</div>
+          <div class="del-desc">Comments monitored and replied to. Algorithm signals maintained. Authority reinforced with every interaction.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Strategy Calls</div>
+          <div class="del-desc">Monthly or weekly sessions — depending on tier — to review performance and keep content aligned with your goals.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Monthly Analytics Report</div>
+          <div class="del-desc">Clear performance data — reach, impressions, follower growth, profile views — with plain-English commentary.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">ICP-Targeted Commenting (Authority+)</div>
+          <div class="del-desc">Strategic commenting on posts by your ideal clients — CPAs who serve CFOs, business owners, and decision-makers.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">DM Outreach System (Rainmaker+)</div>
+          <div class="del-desc">A systematic outbound DM system targeting your exact ICP — not spam, but warm and relevant introductions.</div>
+        </div>
+      </div>
+      <div class="del-item">
+        <div class="del-check">✓</div>
+        <div>
+          <div class="del-title">Newsletter + Media (Rainmaker/Empire)</div>
+          <div class="del-desc">Newsletter ghostwriting, podcast pitching, speaking prep, and national press positioning for the most ambitious tier.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S6: TIMELINE ── -->
+<section class="slide" id="s6">
+  <div class="slide-num">06</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">What to Expect</span>
+    <h2 class="reveal d1">Results by month,<br><em class="blue">not by magic.</em></h2>
+    <p class="lead reveal d2">LinkedIn compounds. Here's exactly what the first 3 months look like — no vague promises, no guessing.</p>
+    <div class="timeline-horiz reveal d3">
+      <div class="tl-col">
+        <div class="tl-month-label">Month 01</div>
+        <div class="tl-title">Foundation</div>
+        <div class="tl-subtitle">Profile rebuilt. System live. Algorithm warming up.</div>
+        <ul class="tl-items">
+          <li>Full profile rewrite complete</li>
+          <li>Content calendar built</li>
+          <li>First 8–16 posts live</li>
+          <li>Hook & hashtag strategy deployed</li>
+          <li>Initial follower growth starts</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-month-label">Month 02</div>
+        <div class="tl-title">Momentum</div>
+        <div class="tl-subtitle">Engagement builds. Ideal clients discover you.</div>
+        <ul class="tl-items">
+          <li>Follower growth week-on-week</li>
+          <li>Inbound connection requests</li>
+          <li>CFO & owner profile views rising</li>
+          <li>Engagement campaigns running</li>
+          <li>First inbound DMs arriving</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-month-label">Month 03</div>
+        <div class="tl-title">Inbound</div>
+        <div class="tl-subtitle">Conversations started. Pipeline forming.</div>
+        <ul class="tl-items">
+          <li>Consistent inbound from content</li>
+          <li>CFO conversations in DMs</li>
+          <li>Speaking & media opportunities</li>
+          <li>Clear ROI attribution visible</li>
+          <li>Strategy reset for phase 2</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal d4" style="margin-top:24px;padding:20px 24px;background:var(--tag-bg);border-radius:12px;border:1px solid rgba(26,86,219,0.15);">
+      <span style="font-size:13px;color:var(--accent);font-weight:600;">Why the 3-month minimum?</span>
+      <span style="font-size:13px;color:var(--ink2);margin-left:12px;">Month 1 plants seeds. Month 2 grows roots. Month 3 bears fruit. One month tells you nothing. Three months tells you everything you need to know — and most clients renew well past it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── S7: PACKAGES ── -->
+<section class="slide" id="s7">
+  <div class="slide-num">07</div>
+  <div class="slide-inner" style="max-width:1000px;">
+    <span class="label reveal">Investment</span>
+    <h2 class="reveal d1">Four tiers.<br><em class="blue">One mission.</em></h2>
+    <div class="pkg-toggle reveal d2">
+      <button class="pkg-toggle-btn active" onclick="setTerm('monthly',this)">Monthly</button>
+      <button class="pkg-toggle-btn" onclick="setTerm('3mo',this)">3 Months · Save 10%</button>
+      <button class="pkg-toggle-btn" onclick="setTerm('6mo',this)">6 Months · Save 15%</button>
+      <button class="pkg-toggle-btn" onclick="setTerm('12mo',this)">12 Months · Save 20%</button>
+    </div>
+    <div class="pkg-grid reveal d3">
+
+      <!-- Tier 1 -->
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 01</div>
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-tagline">Consistent presence without heavy involvement</div>
+        <div class="pkg-price"><sup>$</sup><span class="pkg-num" data-monthly="1,000" data-3mo="900" data-6mo="850" data-12mo="800">1,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="psave-1">–</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>8 posts / month</li>
+          <li>Profile overhaul</li>
+          <li>Headline & banner rewrite</li>
+          <li>Monthly strategy call</li>
+          <li>Basic analytics report</li>
+        </ul>
+        <a href="#" class="pkg-cta" onclick="goTo('s11');return false;">Select Starter</a>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="pkg-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="pkg-tier">Tier 02</div>
+        <div class="pkg-name">Authority</div>
+        <div class="pkg-tagline">Consistent inbound from serious positioning</div>
+        <div class="pkg-price"><sup>$</sup><span class="pkg-num" data-monthly="2,000" data-3mo="1,800" data-6mo="1,700" data-12mo="1,600">2,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="psave-2">–</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Starter</li>
+          <li>16 posts / month</li>
+          <li>Engagement management</li>
+          <li>ICP-targeted commenting</li>
+          <li>Weekly strategy call</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#" class="pkg-cta" onclick="goTo('s11');return false;">Select Authority</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 03</div>
+        <div class="pkg-name">Rainmaker</div>
+        <div class="pkg-tagline">Content + outbound. Clients and speaking.</div>
+        <div class="pkg-price"><sup>$</sup><span class="pkg-num" data-monthly="3,500" data-3mo="3,150" data-6mo="2,975" data-12mo="2,800">3,500</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="psave-3">–</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Authority</li>
+          <li>20 posts / month</li>
+          <li>DM outreach system</li>
+          <li>Lead pipeline reporting</li>
+          <li>Newsletter ghostwriting</li>
+          <li>Speaking pitch prep</li>
+          <li>Priority turnaround</li>
+        </ul>
+        <a href="#" class="pkg-cta" onclick="goTo('s11');return false;">Select Rainmaker</a>
+      </div>
+
+      <!-- Tier 4 -->
+      <div class="pkg-card">
+        <div class="pkg-tier">Tier 04</div>
+        <div class="pkg-name">Empire</div>
+        <div class="pkg-tagline">Full brand management. National reputation.</div>
+        <div class="pkg-price"><sup>$</sup><span class="pkg-num" data-monthly="6,000" data-3mo="5,400" data-6mo="5,100" data-12mo="4,800">6,000</span></div>
+        <span class="pkg-price-lbl">per month</span>
+        <span class="pkg-save" id="psave-4">–</span>
+        <hr class="pkg-sep">
+        <ul class="pkg-feats">
+          <li>Everything in Rainmaker</li>
+          <li>Podcast & media pitching</li>
+          <li>LinkedIn + newsletter managed</li>
+          <li>Dedicated strategist</li>
+          <li>Monthly ROI attribution</li>
+          <li>Quarterly brand audit</li>
+        </ul>
+        <a href="#" class="pkg-cta" onclick="goTo('s11');return false;">Select Empire</a>
+      </div>
+
+    </div>
+    <div class="reveal d4" style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <span style="font-size:12px;color:var(--ink3);">✓ 3-month minimum on all plans</span>
+      <span style="font-size:12px;color:var(--ink3);">✓ Nothing published without your approval</span>
+      <span style="font-size:12px;color:var(--ink3);">✓ One client per niche, per market</span>
+      <span style="font-size:12px;color:var(--ink3);">✓ Upgrade tiers anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── S8: COMPARISON ── -->
+<section class="slide" id="s8">
+  <div class="slide-num">08</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">Side by Side</span>
+    <h2 class="reveal d1">What each tier<br><em class="gray">actually includes.</em></h2>
+    <div class="compare-table reveal d2">
+      <div class="ct-head">
+        <div class="ct-head-cell">Feature</div>
+        <div class="ct-head-cell">Starter</div>
+        <div class="ct-head-cell feat">Authority</div>
+        <div class="ct-head-cell">Rainmaker</div>
+        <div class="ct-head-cell">Empire</div>
+      </div>
+      <div class="ct-row cat-row"><div class="ct-cell">Content</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Posts per month</div><div class="ct-cell v">8</div><div class="ct-cell v">16</div><div class="ct-cell v">20</div><div class="ct-cell v">20+</div></div>
+      <div class="ct-row"><div class="ct-cell">Profile overhaul</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Headline & banner rewrite</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Newsletter ghostwriting</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat-row"><div class="ct-cell">Strategy & Calls</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Strategy calls</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Weekly</div><div class="ct-cell v">Weekly</div><div class="ct-cell v">Weekly</div></div>
+      <div class="ct-row"><div class="ct-cell">Dedicated strategist</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat-row"><div class="ct-cell">Outreach & Growth</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">ICP-targeted commenting</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">DM outreach system</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Lead pipeline reporting</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Podcast & media pitching</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Speaking pitch prep</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row cat-row"><div class="ct-cell">Reporting</div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div><div class="ct-cell"></div></div>
+      <div class="ct-row"><div class="ct-cell">Analytics report</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div><div class="ct-cell v">Monthly</div></div>
+      <div class="ct-row"><div class="ct-cell">Monthly ROI attribution</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div></div>
+      <div class="ct-row"><div class="ct-cell">Quarterly brand audit</div><div class="ct-cell n">—</div><div class="ct-cell n">—</div><div class="ct-cell y">✓</div><div class="ct-cell y">✓</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S9: OBJECTION HANDLING ── -->
+<section class="slide" id="s9">
+  <div class="slide-num">09</div>
+  <div class="slide-inner" style="max-width:760px;">
+    <span class="label reveal">Objection Handling</span>
+    <h2 class="reveal d1">Questions CPAs<br><em class="blue">always ask.</em></h2>
+    <p class="lead reveal d2">Straight answers. No spin.</p>
+    <div class="obj-accordion reveal d3">
+
+      <div class="obj-item open">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"How do I know you actually understand accounting?"</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">Trust / Credibility</div>
+          I'm a CA Finalist with 4 years in a US-focused KPO firm serving US accounting clients directly. I've worked on tax advisory, bookkeeping, CFO-services accounts — not from theory but from doing the work. <strong>Your content will never read like it was written by a marketer who Googled "CPA tips."</strong> Ask me anything about depreciation schedules, 1031 exchanges, or quarterly estimates — I'll answer. That's the difference.
+        </div>
+      </div>
+
+      <div class="obj-item">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"I've tried LinkedIn before and it didn't work."</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">Skepticism</div>
+          The reason LinkedIn doesn't work for most CPAs is posting without strategy — generic tips, no ICP targeting, no profile optimisation, no consistency. It's not the platform that failed. It's the approach. <strong>What I do is fundamentally different: every post has a purpose, every comment has a target, and every month has a measurable output.</strong> The system is what they were missing.
+        </div>
+      </div>
+
+      <div class="obj-item">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"I need to think about it / talk to my partner."</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">Stall</div>
+          Completely fair. A couple of things worth considering before that conversation: <strong>spots in your niche are limited — I don't take competing clients</strong>, so the window matters. And the cost of staying invisible isn't zero — every month without LinkedIn is a month your competitors build authority you'd have to catch up to. What specific concern can I help you think through right now?
+        </div>
+      </div>
+
+      <div class="obj-item">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"Can't I just do this myself?"</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">DIY objection</div>
+          Absolutely — and many CPAs intend to. The question is: how's that been going? The challenge isn't knowledge, it's capacity. You have clients, deadlines, and a practice to run. <strong>LinkedIn rewards consistency above everything else — and consistency is the first thing that slips when you're busy.</strong> That's exactly the gap I fill. Your time is worth more doing billable work than writing LinkedIn posts.
+        </div>
+      </div>
+
+      <div class="obj-item">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"What if I don't like the content?"</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">Quality concern</div>
+          Nothing goes live without your approval. Every single post comes to you first. <strong>If the tone is off, the angle isn't right, or you just don't like it — I revise until it's right.</strong> The first 2 weeks are a calibration period where I dial in your exact voice. After that, most clients rarely change anything. The goal is for your audience to never know someone else wrote it.
+        </div>
+      </div>
+
+      <div class="obj-item">
+        <button class="obj-q" onclick="toggleObj(this)">
+          <span class="obj-q-text">"$X/month is a lot. What's the ROI?"</span>
+          <span class="obj-icon">+</span>
+        </button>
+        <div class="obj-a">
+          <div class="obj-label">Price / ROI</div>
+          Fair question. Let's do the math: <strong>one new mid-market client from LinkedIn could be worth $10,000–$50,000+ annually</strong> depending on your services. If this system produces one client every 3–6 months — which is a conservative estimate — the ROI is multiples. You're not spending on ads with uncertain reach. You're building permanent authority that compounds. Every post you publish today is an asset that works for years.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── S10: WHY EXCLUSIVE ── -->
+<section class="slide" id="s10">
+  <div class="slide-num">10</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">Scarcity & Urgency</span>
+    <h2 class="reveal d1" style="color:var(--white);">Why spots are<br><em class="blue">genuinely limited.</em></h2>
+    <div class="excl-grid reveal d2">
+      <div class="excl-card">
+        <span class="excl-icon">🔒</span>
+        <div class="excl-title">One niche per market</div>
+        <div class="excl-body">I don't take two CPAs with the same specialty in the same market. If you do tax advisory for tech startups in Austin, that's your lane — nobody else gets it while you're a client.</div>
+      </div>
+      <div class="excl-card">
+        <span class="excl-icon">⏱️</span>
+        <div class="excl-title">Capacity is finite</div>
+        <div class="excl-body">High-quality content, engagement management, and strategy calls require real attention. I cap total clients deliberately — this is not a template-and-automate service.</div>
+      </div>
+      <div class="excl-card">
+        <span class="excl-icon">📈</span>
+        <div class="excl-title">First mover advantage</div>
+        <div class="excl-body">In most CPA niches, nobody owns LinkedIn yet. The first person to build authority there will be very difficult to displace. That window is open — but not indefinitely.</div>
+      </div>
+    </div>
+    <div class="excl-statement reveal d3">
+      <div class="excl-big">90<span style="font-size:32px;color:rgba(255,255,255,0.3);">days</span></div>
+      <div class="excl-text">That's how long it takes to go from invisible to being the CPA that CFOs and business owners in your niche are already familiar with before they ever reach out. <strong>The CPAs winning on LinkedIn in 2026 are the ones who started in 2025.</strong> The ones who start now are still early — but that window closes every week someone else takes their niche.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── S11: NEXT STEPS / CLOSE ── -->
+<section class="slide" id="s11">
+  <div class="slide-num">11</div>
+  <div class="slide-inner" style="max-width:960px;">
+    <span class="label reveal">Let's Close</span>
+    <h2 class="reveal d1">Three steps to<br><em class="blue">going live.</em></h2>
+    <div class="close-layout">
+      <div>
+        <p class="body-text reveal d2" style="margin-bottom:28px;">Here's exactly what happens after you say yes — simple, fast, and no surprises.</p>
+        <div class="steps-list">
+          <div class="next-step reveal d2">
+            <div class="next-step-num">1</div>
+            <div>
+              <div class="next-step-title">Agreement & First Invoice</div>
+              <div class="next-step-desc">Simple one-page agreement sent within 24 hours. First month (or full term) invoiced via Stripe or wire. Takes 10 minutes to complete.</div>
+            </div>
+          </div>
+          <div class="next-step reveal d3">
+            <div class="next-step-num">2</div>
+            <div>
+              <div class="next-step-title">Onboarding Call (60 min)</div>
+              <div class="next-step-desc">We book a 60-minute deep-dive within 48 hours of payment. I learn your niche, voice, ideal client, and goals. This is the only significant time ask — ever.</div>
+            </div>
+          </div>
+          <div class="next-step reveal d4">
+            <div class="next-step-num">3</div>
+            <div>
+              <div class="next-step-title">Profile Live Within 7 Days</div>
+              <div class="next-step-desc">Optimised profile published. Content calendar built. First posts scheduled. You'll see your new LinkedIn within a week of our call — ready to attract ideal clients.</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d5" style="margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--off);">
+          <div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px;">Which tier are we starting with?</div>
+          <div style="font-size:13px;color:var(--ink3);line-height:1.7;">
+            <strong style="color:var(--ink2);">Starter ($1,000/mo)</strong> — Just starting out, want consistent presence.<br>
+            <strong style="color:var(--ink2);">Authority ($2,000/mo)</strong> — Ready for serious inbound. Most popular.<br>
+            <strong style="color:var(--ink2);">Rainmaker ($3,500/mo)</strong> — Want clients + speaking opportunities.<br>
+            <strong style="color:var(--ink2);">Empire ($6,000/mo)</strong> — Building a national reputation.
+          </div>
+        </div>
+      </div>
+      <div class="reveal d3">
+        <div class="close-card">
+          <h3>Ready to become<br>the CPA clients <em>find?</em></h3>
+          <p>Book a follow-up call or lock in your spot right now. No obligation until the agreement is signed.</p>
+          <a href="https://calendly.com/harshkaklotar8/linkedin-strategy-call" class="close-cta" target="_blank">Book Your Strategy Call →</a>
+          <div class="close-note">Free · 20 minutes · No pressure</div>
+          <div class="guarantee-badge">
+            <div class="guar-icon">🔒</div>
+            <div class="guar-text"><strong>Nothing goes live without your approval.</strong> Every post reviewed by you before publishing — always.</div>
+          </div>
+          <div class="guarantee-badge">
+            <div class="guar-icon">🎯</div>
+            <div class="guar-text"><strong>One client per niche.</strong> Your spot — and your positioning — is protected for the length of your engagement.</div>
+          </div>
+          <div class="guarantee-badge">
+            <div class="guar-icon">📅</div>
+            <div class="guar-text"><strong>Profile live within 7 days</strong> of onboarding call. First posts scheduled before week 2.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /#main -->
+
+<script>
+/* ════════════════════════════════════
+   ANIMATED BACKGROUND CANVAS
+════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=document.body.scrollHeight;}
+  window.addEventListener('resize',resize);
+  resize();
+  for(let i=0;i<30;i++){
+    particles.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*3+1,
+      vx:(Math.random()-0.5)*0.3,
+      vy:(Math.random()-0.5)*0.3,
+      o:Math.random()*0.4+0.05
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // Subtle grid
+    ctx.strokeStyle='rgba(26,86,219,0.025)';
+    ctx.lineWidth=1;
+    const step=80;
+    for(let x=0;x<W;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    // Particles
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(26,86,219,${p.o})`;
+      ctx.fill();
+    });
+    // Connect nearby particles
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x;
+        const dy=particles[i].y-particles[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(26,86,219,${0.06*(1-d/120)})`;
+          ctx.lineWidth=1;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ════════════════════════════════════
+   NAV: ACTIVE STATE + PROGRESS
+════════════════════════════════════ */
+const slides = document.querySelectorAll('.slide');
+const navItems = document.querySelectorAll('.nav-item');
+const progressFill = document.getElementById('progress-fill');
+
+function updateNav(){
+  let current=0;
+  const scrollY=window.scrollY+window.innerHeight/3;
+  slides.forEach((s,i)=>{if(s.offsetTop<=scrollY)current=i;});
+  navItems.forEach((n,i)=>n.classList.toggle('active',i===current));
+  const totalH=document.body.scrollHeight-window.innerHeight;
+  progressFill.style.width=(totalH>0?(window.scrollY/totalH*100):0)+'%';
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+updateNav();
+
+function goTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════ */
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*55);
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ════════════════════════════════════
+   COUNT-UP NUMBERS
+════════════════════════════════════ */
+function animateCount(el){
+  if(el.dataset.done)return;
+  el.dataset.done='1';
+  const target=parseFloat(el.dataset.target);
+  const divide=parseFloat(el.dataset.divide)||1;
+  const suffix=el.dataset.suffix||'';
+  const duration=1800;
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/duration,1);
+    const ease=1-Math.pow(1-t,4);
+    const val=(target*ease/divide);
+    el.textContent=(divide>1?val.toFixed(1):Math.round(val))+suffix;
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const countObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)animateCount(e.target);});
+},{threshold:0.3});
+document.querySelectorAll('.countup').forEach(el=>countObs.observe(el));
+
+/* ════════════════════════════════════
+   OBJECTION ACCORDION
+════════════════════════════════════ */
+function toggleObj(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.obj-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+/* ════════════════════════════════════
+   PACKAGE PRICING TOGGLE
+════════════════════════════════════ */
+const SAVES={
+  '3mo':  {1:'Save $300',  2:'Save $600',  3:'Save $1,050', 4:'Save $1,800'},
+  '6mo':  {1:'Save $900',  2:'Save $1,800',3:'Save $3,150', 4:'Save $5,400'},
+  '12mo': {1:'Save $1,200',2:'Save $4,800',3:'Save $8,400', 4:'Save $14,400'}
+};
+function setTerm(term,btn){
+  document.querySelectorAll('.pkg-toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pkg-num').forEach(el=>{
+    el.textContent=el.dataset[term]||el.dataset.monthly;
+    // Animate the price change
+    el.style.transform='translateY(-8px)';el.style.opacity='0';
+    setTimeout(()=>{el.style.transition='all 0.3s';el.style.transform='none';el.style.opacity='1';},50);
+  });
+  [1,2,3,4].forEach(i=>{
+    const s=document.getElementById('psave-'+i);
+    if(term==='monthly'){s.style.visibility='hidden';}
+    else{s.style.visibility='visible';s.textContent=SAVES[term][i];}
+  });
+}
+
+/* ════════════════════════════════════
+   SLIDE ENTRANCE ANIMATIONS
+════════════════════════════════════ */
+// Stagger pain cards on slide entry
+const slideObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const cards=e.target.querySelectorAll('.pain-card,.cred-fact,.del-item,.pkg-card,.excl-card,.next-step');
+      cards.forEach((c,i)=>{
+        c.style.opacity='0';c.style.transform='translateY(20px)';
+        setTimeout(()=>{
+          c.style.transition=`opacity 0.55s cubic-bezier(0.22,1,0.36,1) ${i*60}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${i*60}ms`;
+          c.style.opacity='1';c.style.transform='none';
+        },100);
+      });
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.slide').forEach(s=>slideObs.observe(s));
+
+/* ════════════════════════════════════
+   TILT EFFECT ON PROOF CARD
+════════════════════════════════════ */
+document.querySelectorAll('.proof-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateZ(4px)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+});
+
+/* ════════════════════════════════════
+   RESIZE CANVAS ON LOAD
+════════════════════════════════════ */
+window.addEventListener('load',()=>{
+  const canvas=document.getElementById('bg-canvas');
+  canvas.width=window.innerWidth;
+  canvas.height=document.body.scrollHeight;
+});
+</script>
+</body>
+</html>
